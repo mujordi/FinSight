@@ -1,0 +1,29 @@
+
+<!doctype html>
+<html><head><meta charset="utf-8"><title>FinSight</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+.card{background:#020617;border-radius:12px;padding:30px;max-width:700px;margin:auto;margin-top:80px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.item{background:#020617;border:1px solid #1e293b;padding:16px;border-radius:8px}
+</style></head>
+<body>
+<div class="card">
+<h1 id="state">FinSight</h1><div id="date"></div>
+<div class="grid">
+<div class="item">Real Yield: <span id="ry"></span></div>
+<div class="item">DXY: <span id="dxy"></span></div>
+<div class="item">VIX: <span id="vix"></span></div>
+<div class="item">Curve: <span id="curve"></span></div>
+</div></div>
+<script>
+const d=__DATA__;
+if(d.macro_state){
+state.innerText=d.macro_state;
+date.innerText=d.date+" | Score "+d.score;
+ry.innerText=d.details.real_yield;
+dxy.innerText=d.details.dxy;
+vix.innerText=d.details.vix;
+curve.innerText=d.details.curve;
+}
+</script></body></html>
