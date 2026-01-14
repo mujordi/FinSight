@@ -5,10 +5,3 @@ FILE = "macro_state.json"
 def save(data):
     with open(FILE, "w") as f:
         json.dump(data, f, indent=2)
-
-def load():
-    try:
-        with open(FILE) as f:
-            return json.load(f)
-    except:
-        return {}

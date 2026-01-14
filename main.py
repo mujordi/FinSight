@@ -17,11 +17,11 @@ def load():
     except:
         return {}
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request):
     check(request)
     html = open("templates/index.html").read()
-    return HTMLResponse(html.replace("__DATA__", json.dumps(load())))
+    return html.replace("__DATA__", json.dumps(load()))
 
 @app.get("/state")
 def state(request: Request):
