@@ -1,6 +1,8 @@
 import requests
 import os
 
+print("USING NEW DATA FETCHER VERSION")
+
 FRED_KEY = os.getenv("FRED_API_KEY")
 
 def safe_float(x, default=0):
