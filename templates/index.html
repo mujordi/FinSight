@@ -1,29 +1,59 @@
 
 <!doctype html>
-<html><head><meta charset="utf-8"><title>FinSight</title>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FinSight</title>
 <style>
-body{margin:0;font-family:Arial;background:#0f172a;color:white}
-.card{background:#020617;border-radius:12px;padding:30px;max-width:700px;margin:auto;margin-top:80px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-.item{background:#020617;border:1px solid #1e293b;padding:16px;border-radius:8px}
-</style></head>
+:root{--bg:#0f172a;--card:#020617;--border:#1e293b;--g:#16a34a;--y:#eab308;--r:#dc2626}
+body{margin:0;font-family:Inter,Arial;background:var(--bg);color:white}
+.header{display:flex;gap:8px;padding:12px;background:#020617}
+.tab{padding:10px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer}
+.tab.active{background:#1e293b}
+.container{max-width:1000px;margin:auto;padding:16px}
+.card{background:var(--card);border-radius:16px;padding:24px;margin-top:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.item{border:1px solid var(--border);padding:16px;border-radius:12px}
+.hidden{display:none}
+</style>
+</head>
 <body>
-<div class="card">
-<h1 id="state">FinSight</h1><div id="date"></div>
-<div class="grid">
-<div class="item">Real Yield: <span id="ry"></span></div>
-<div class="item">DXY: <span id="dxy"></span></div>
-<div class="item">VIX: <span id="vix"></span></div>
-<div class="item">Curve: <span id="curve"></span></div>
-</div></div>
+<div class="header">
+  <div class="tab active" onclick="show('macro')">Macro</div>
+  <div class="tab" onclick="show('gold')">Gold</div>
+</div>
+
+<div class="container">
+  <div id="macro" class="card">
+    <h2 id="macro_state"></h2>
+  </div>
+
+  <div id="gold" class="card hidden">
+    <h2 id="gold_state"></h2>
+    <div class="grid">
+      <div class="item">Real Yields</div>
+      <div class="item">Dollar</div>
+      <div class="item">Risk</div>
+    </div>
+  </div>
+</div>
+
 <script>
-const d=__DATA__;
-if(d.macro_state){
-state.innerText=d.macro_state;
-date.innerText=d.date+" | Score "+d.score;
-ry.innerText=d.details.real_yield;
-dxy.innerText=d.details.dxy;
-vix.innerText=d.details.vix;
-curve.innerText=d.details.curve;
+const data = __DATA__ || {};
+if(data.macro){
+ document.getElementById("macro_state").innerText = data.macro.macro_state;
 }
-</script></body></html>
+if(data.gold){
+ document.getElementById("gold_state").innerText = data.gold.gold_state;
+}
+
+function show(id){
+ document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

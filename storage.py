@@ -1,7 +1,14 @@
-import json
-FILE='macro_state.json'
 
-def save(d): json.dump(d,open(FILE,'w'))
+import json
+FILE = "macro_state.json"
+
+def save(data):
+    with open(FILE, "w") as f:
+        json.dump(data, f)
+
 def load():
-    try: return json.load(open(FILE))
-    except: return None
+    try:
+        with open(FILE) as f:
+            return json.load(f)
+    except:
+        return {}
