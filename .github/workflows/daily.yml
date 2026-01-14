@@ -1,17 +1,18 @@
-name: FinSight Daily Macro
-
-on:
-  schedule:
-    - cron: "0 7 * * *"   # cada dia a les 07:00 UTC
-  workflow_dispatch:
-
 jobs:
   run-macro:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: 0
+
+      - name: Show files
+        run: ls -la
+
+      - name: Show data_fetcher
+        run: cat data_fetcher.py
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,12 +24,4 @@ jobs:
 
       - name: Run macro model
         run: python daily_job.py
-
-      - name: Commit results
-        run: |
-          git config user.name "finsight-bot"
-          git config user.email "bot@finsight.ai"
-          git add macro_state.json
-          git commit -m "Daily macro update" || echo "No changes"
-          git push
 
