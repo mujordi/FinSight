@@ -19,13 +19,18 @@ def get_fred(series):
         "limit": 1
     }
 
-    r = requests.get(url, params=params, timeout=10)
-    data = r.json()
+    try:
+        r = requests.get(url, params=params, timeout=10)
+        data = r.json()
 
-    if "observations" not in data:
-        raise Exception(f"FRED error: {data}")
+        if "observations" not in data:
+            print("FRED error:", data)
+            return 0
 
-    return safe_float(data["observations"][0]["value"])
+        return safe_float(data["observations"][0]["value"])
+    except Exception as e:
+        print("FRED exception:", e)
+        return 0
 
 def get_real_yield():
     return get_fred("DFII10")
@@ -34,9 +39,13 @@ def get_curve():
     return get_fred("DGS10") - get_fred("DGS2")
 
 def get_yahoo(symbol):
-    url = f"https://query1.finance.yahoo.com/v7/finance/quote?symbols={symbol}"
-    r = requests.get(url, timeout=10)
-    return safe_float(r.json()["quoteResponse"]["result"][0]["regularMarketPrice"])
+    try:
+        url = f"https://query1.finance.yahoo.com/v7/finance/quote?symbols={symbol}"
+        r = requests.get(url, timeout=10)
+        return safe_float(r.json()["quoteResponse"]["result"][0]["regularMarketPrice"])
+    except Exception as e:
+        print("Yahoo error:", e)
+        return 0
 
 def get_dxy():
     return get_yahoo("DX-Y.NYB")
