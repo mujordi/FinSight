@@ -1,1 +1,87 @@
-{"macro": {"date": "2026-01-14", "macro_state": "TRANSICI\u00d3", "score": 4, "details": {"real_yield": "neutral", "dxy": "favorable", "vix": "favorable", "curve": "restrictiu"}}, "gold": {"gold_state": "GOLD NEUTRAL / HOLD", "score": 3, "reasons": {"real_yield": "neutral", "dxy": "weak dollar", "risk": "risk-on"}}}
+{
+  "last_update": "2026-01-14T10:55:34.004336",
+  "macro": {
+    "state": "RISK-ON",
+    "score": 5,
+    "explanation": "Macro regime derived from real yields, dollar strength and volatility.",
+    "parameters": [
+      {
+        "parameter": "Real Yield (10Y)",
+        "real_value": 0,
+        "signal": "neutral",
+        "impact": 1,
+        "explanation": "Moderate real yields are macro-neutral."
+      },
+      {
+        "parameter": "US Dollar Index (DXY)",
+        "real_value": 0,
+        "signal": "positive",
+        "impact": 2,
+        "explanation": "Weak dollar supports global liquidity."
+      },
+      {
+        "parameter": "Equity Volatility (VIX)",
+        "real_value": 0,
+        "signal": "positive",
+        "impact": 2,
+        "explanation": "Low volatility indicates risk-on regime."
+      }
+    ]
+  },
+  "gold": {
+    "state": "NEUTRAL",
+    "score": 2,
+    "explanation": "Gold is sensitive to real yields, dollar trends and risk aversion.",
+    "parameters": [
+      {
+        "parameter": "Real Yield (10Y)",
+        "real_value": 0,
+        "signal": "neutral",
+        "impact": 0,
+        "explanation": "Macro variable influencing gold demand."
+      },
+      {
+        "parameter": "US Dollar Index (DXY)",
+        "real_value": 0,
+        "signal": "positive",
+        "impact": 2,
+        "explanation": "Macro variable influencing gold demand."
+      },
+      {
+        "parameter": "Equity Volatility (VIX)",
+        "real_value": 0,
+        "signal": "positive",
+        "impact": 0,
+        "explanation": "Macro variable influencing gold demand."
+      }
+    ]
+  },
+  "nasdaq": {
+    "state": "BULLISH",
+    "score": 5,
+    "explanation": "Nasdaq performance depends on rates, volatility and liquidity.",
+    "parameters": [
+      {
+        "parameter": "Real Yield (10Y)",
+        "real_value": 0,
+        "signal": "neutral",
+        "impact": 2,
+        "explanation": "Macro variable affecting growth equity valuations."
+      },
+      {
+        "parameter": "US Dollar Index (DXY)",
+        "real_value": 0,
+        "signal": "positive",
+        "impact": 1,
+        "explanation": "Macro variable affecting growth equity valuations."
+      },
+      {
+        "parameter": "Equity Volatility (VIX)",
+        "real_value": 0,
+        "signal": "positive",
+        "impact": 2,
+        "explanation": "Macro variable affecting growth equity valuations."
+      }
+    ]
+  }
+}

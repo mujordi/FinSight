@@ -1,22 +1,18 @@
 
-from macro_model import macro_model
-from gold_model import gold_model
-from nasdaq_model import nasdaq_model
-from data_fetcher import get_real_yield, get_dxy, get_vix, get_curve
+from datetime import datetime
+from data_fetcher import snapshot, series
+from macro_core import macro_core
+from asset_layer import assets
+from products import PRODUCT_TABS
 from storage import save
 
-macro = macro_model({
-    "real_yield": get_real_yield(),
-    "dxy": get_dxy(),
-    "vix": get_vix(),
-    "yield_curve": get_curve()
-})
-
-data = {
-    "macro": macro,
-    "gold": gold_model(macro),
-    "nasdaq": nasdaq_model(macro)
+macro=macro_core(snapshot())
+state={
+ "updated":datetime.utcnow().isoformat(),
+ "macro":macro,
+ "assets":assets(macro["state"]),
+ "tabs":PRODUCT_TABS,
+ "series":series()
 }
-
-save(data)
-print(data)
+save(state)
+print(state)

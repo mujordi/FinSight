@@ -1,0 +1,165 @@
+{
+  "updated": "2026-01-14T15:39:03.576394",
+  "macro": {
+    "state": "TRANSITION",
+    "score": 4,
+    "parameters": [
+      {
+        "name": "Real Yield 10Y (%)",
+        "value": 1.9,
+        "signal": "negative",
+        "impact": 0,
+        "explanation": "Cost of capital"
+      },
+      {
+        "name": "Inflation YoY (%)",
+        "value": 2.65,
+        "signal": "positive",
+        "impact": 2,
+        "explanation": "Price stability"
+      },
+      {
+        "name": "Yield Curve (10Y-2Y)",
+        "value": 0.65,
+        "signal": "positive",
+        "impact": 1,
+        "explanation": "Growth expectations"
+      },
+      {
+        "name": "Dollar Index",
+        "value": 120.59,
+        "signal": "negative",
+        "impact": 0,
+        "explanation": "Global liquidity"
+      },
+      {
+        "name": "VIX",
+        "value": 15.98,
+        "signal": "neutral",
+        "impact": 1,
+        "explanation": "Risk appetite"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "name": "Cash",
+      "view": "Neutral",
+      "color": "yellow"
+    },
+    {
+      "name": "Bonds",
+      "view": "Attractive",
+      "color": "green"
+    },
+    {
+      "name": "Gold",
+      "view": "Attractive",
+      "color": "green"
+    },
+    {
+      "name": "Equities",
+      "view": "Selective",
+      "color": "yellow"
+    },
+    {
+      "name": "High Beta",
+      "view": "Selective",
+      "color": "red"
+    }
+  ],
+  "tabs": [
+    {
+      "name": "Macro",
+      "type": "macro"
+    },
+    {
+      "name": "Gold",
+      "type": "gold"
+    },
+    {
+      "name": "Equities",
+      "type": "equities"
+    },
+    {
+      "name": "Bonds",
+      "type": "bonds"
+    },
+    {
+      "name": "Cash",
+      "type": "cash"
+    }
+  ],
+  "series": {
+    "real_yield": [
+      1.81,
+      1.79,
+      1.77,
+      1.79,
+      1.85,
+      1.85,
+      1.82,
+      1.85,
+      1.88,
+      1.91,
+      1.92,
+      1.88,
+      1.89,
+      1.93,
+      1.93,
+      1.92,
+      1.92,
+      1.88,
+      1.92,
+      1.94,
+      1.94,
+      1.91,
+      1.91,
+      1.9,
+      1.9,
+      1.93,
+      1.94,
+      1.91,
+      1.91,
+      1.88,
+      1.92,
+      1.9,
+      1.9
+    ],
+    "dollar": [
+      122.235,
+      122.2833,
+      122.0044,
+      121.6225,
+      121.4288,
+      121.3615,
+      121.5149,
+      121.1131,
+      121.0614,
+      121.0615,
+      121.1478,
+      121.0601,
+      121.0557,
+      120.3821,
+      120.5383,
+      120.3501,
+      120.283,
+      120.5451,
+      120.4409,
+      120.5571,
+      120.3816,
+      120.098,
+      119.8262,
+      119.8529,
+      119.9679,
+      119.8754,
+      120.1166,
+      119.9876,
+      120.0032,
+      120.1587,
+      120.2573,
+      120.4604,
+      120.5856
+    ]
+  }
+}

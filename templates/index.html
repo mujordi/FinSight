@@ -1,77 +1,36 @@
 
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FinSight PRO</title>
+<!doctype html><html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FinSight</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-body{margin:0;font-family:Inter,Arial;background:#0f172a;color:white}
-.header{display:flex;gap:10px;padding:12px;background:#020617;justify-content:center;flex-wrap:wrap}
-.tab{padding:10px 16px;border-radius:8px;border:1px solid #1e293b;cursor:pointer}
-.tab.active{background:#1e293b}
-.container{max-width:900px;margin:auto;padding:20px}
-.card{background:#020617;border-radius:16px;padding:24px;margin-top:20px}
-.badge{padding:6px 12px;border-radius:20px;background:#1e293b;display:inline-block;margin-bottom:10px}
-.hidden{display:none}
-</style>
-</head>
-<body>
-<div class="header">
-  <div class="tab active" onclick="show('macro')">Macro</div>
-  <div class="tab" onclick="show('gold')">Gold</div>
-  <div class="tab" onclick="show('nasdaq')">Nasdaq</div>
-</div>
-
-<div class="container">
-  <div id="macro" class="card">
-    <h2 id="macro_state">Loading…</h2>
-    <div class="badge">Score: <span id="macro_score">–</span></div>
-    <p id="macro_exp"></p>
-  </div>
-
-  <div id="gold" class="card hidden">
-    <h2 id="gold_state">Loading…</h2>
-    <div class="badge">Score: <span id="gold_score">–</span></div>
-    <p id="gold_exp"></p>
-  </div>
-
-  <div id="nasdaq" class="card hidden">
-    <h2 id="nasdaq_state">Loading…</h2>
-    <div class="badge">Score: <span id="nasdaq_score">–</span></div>
-    <p id="nasdaq_exp"></p>
-  </div>
-</div>
-
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+header{padding:20px;text-align:center;background:#020617}
+nav{display:flex;gap:10px;justify-content:center;margin-top:10px}
+nav button{background:#020617;color:white;border:1px solid #334155;padding:10px 16px;border-radius:10px}
+section{max-width:1200px;margin:auto;padding:24px}
+.card{background:#020617;border-radius:16px;padding:24px;margin-bottom:24px}
+.asset{display:inline-block;padding:8px 14px;border-radius:14px;margin:4px}
+.green{background:#16a34a}.yellow{background:#eab308}.red{background:#dc2626}
+table{width:100%;border-collapse:collapse;margin-top:16px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid #1e293b}
+canvas{max-height:300px}
+</style></head><body>
+<header><h1>FinSight</h1><p>Macro & Product Intelligence</p><nav id="tabs"></nav></header>
+<section id="content"></section>
 <script>
-const data = __DATA__ || {};
-
-function render(){
-  if(data.macro){
-    macro_state.innerText = data.macro.state;
-    macro_score.innerText = data.macro.score;
-    macro_exp.innerText = data.macro.explanation;
-  }
-  if(data.gold){
-    gold_state.innerText = data.gold.state;
-    gold_score.innerText = data.gold.score;
-    gold_exp.innerText = data.gold.explanation;
-  }
-  if(data.nasdaq){
-    nasdaq_state.innerText = data.nasdaq.state;
-    nasdaq_score.innerText = data.nasdaq.score;
-    nasdaq_exp.innerText = data.nasdaq.explanation;
-  }
+const D=__DATA__,content=document.getElementById("content"),tabs=document.getElementById("tabs");
+D.tabs.forEach(t=>{let b=document.createElement("button");b.innerText=t.name;b.onclick=()=>render(t.type);tabs.appendChild(b);});
+function render(type){
+ if(type==="macro"){
+  content.innerHTML=`<div class="card"><h2>${D.macro.state} (Score ${D.macro.score})</h2>
+  ${D.assets.map(a=>`<span class="asset ${a.color}">${a.name}: ${a.view}</span>`).join("")}
+  <table><tr><th>Parameter</th><th>Value</th><th>Signal</th><th>Impact</th><th>Explanation</th></tr>
+  ${D.macro.parameters.map(p=>`<tr><td>${p.name}</td><td>${p.value}</td><td>${p.signal}</td><td>${p.impact}</td><td>${p.explanation}</td></tr>`).join("")}</table></div>
+  <div class="card"><canvas id="ry"></canvas></div><div class="card"><canvas id="dx"></canvas></div>`;
+  new Chart(document.getElementById("ry"),{type:"line",data:{labels:D.series.real_yield.map((_,i)=>i),datasets:[{label:"Real Yield",data:D.series.real_yield,borderColor:"yellow"}]}});
+  new Chart(document.getElementById("dx"),{type:"line",data:{labels:D.series.dollar.map((_,i)=>i),datasets:[{label:"Dollar Index",data:D.series.dollar,borderColor:"cyan"}]}});
+ } else content.innerHTML=`<div class="card"><h2>${type.toUpperCase()}</h2><p>Detailed model coming next.</p></div>`;
 }
-
-render();
-
-function show(id){
- document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
- document.getElementById(id).classList.remove('hidden');
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- event.target.classList.add('active');
-}
-</script>
-</body>
-</html>
+render("macro");
+</script></body></html>
