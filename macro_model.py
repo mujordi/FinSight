@@ -1,11 +1,42 @@
-import datetime
 
-def macro_model(data):
-    score=0
-    def sc(v,a,b): return (0,'favorable') if v<a else (1,'neutral') if v<b else (2,'restrictiu')
-    ry,s1=sc(data['real_yield'],0,1.5); score+=ry*2
-    dxy,s2=sc(data['dxy'],100,105); score+=dxy
-    vix,s3=sc(data['vix'],15,20); score+=vix
-    cv,s4=sc(data['yield_curve'],0,-0.5); score+=cv
-    state='RISC FAVORABLE' if score<=2 else 'TRANSICIÓ' if score<=4 else 'RISC RESTRICTIU'
-    return {'date':datetime.date.today().isoformat(),'macro_state':state,'score':score,'details':{'real_yield':s1,'dxy':s2,'vix':s3,'curve':s4}}
+def macro_model(inputs):
+    score = 0
+    details = {}
+
+    ry = inputs["real_yield"]
+    if ry < 0:
+        score += 2; details["real_yield"]="supportive"
+    elif ry < 1:
+        score += 1; details["real_yield"]="neutral"
+    else:
+        details["real_yield"]="restrictive"
+
+    dxy = inputs["dxy"]
+    if dxy < 100:
+        score += 2; details["dxy"]="weak"
+    elif dxy < 105:
+        score += 1; details["dxy"]="neutral"
+    else:
+        details["dxy"]="strong"
+
+    vix = inputs["vix"]
+    if vix > 25:
+        score += 2; details["risk"]="stress"
+    elif vix > 15:
+        score += 1; details["risk"]="normal"
+    else:
+        details["risk"]="calm"
+
+    if score >= 5:
+        state="RISK FAVORABLE"
+    elif score >=3:
+        state="TRANSITION"
+    else:
+        state="RISK RESTRICTIVE"
+
+    return {
+        "state": state,
+        "score": score,
+        "explanation": "Macro regime based on real yields, dollar strength and risk conditions.",
+        "details": details
+    }

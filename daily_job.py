@@ -1,7 +1,8 @@
 
 from macro_model import macro_model
 from gold_model import gold_model
-from data_fetcher import get_real_yield, get_dxy, get_vix, get_curve
+from nasdaq_model import nasdaq_model
+from data_fetcher import get_real_yield,get_dxy,get_vix,get_curve
 from storage import save
 
 macro = macro_model({
@@ -11,12 +12,11 @@ macro = macro_model({
     "yield_curve": get_curve()
 })
 
-gold = gold_model(macro)
-
-result = {
+data = {
     "macro": macro,
-    "gold": gold
+    "gold": gold_model(macro),
+    "nasdaq": nasdaq_model(macro)
 }
 
-save(result)
-print(result)
+save(data)
+print(data)

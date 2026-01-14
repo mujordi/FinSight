@@ -1,20 +1,18 @@
 
 <!doctype html>
-<html lang="ca">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FinSight</title>
+<title>FinSight Pro</title>
 <style>
-:root{--bg:#0f172a;--card:#020617;--border:#1e293b;--g:#16a34a;--y:#eab308;--r:#dc2626}
-body{margin:0;font-family:Inter,Arial;background:var(--bg);color:white}
-.header{display:flex;gap:8px;padding:12px;background:#020617}
-.tab{padding:10px 16px;border-radius:8px;border:1px solid var(--border);cursor:pointer}
+body{margin:0;font-family:Inter,Arial;background:#0f172a;color:white}
+.header{display:flex;gap:10px;padding:12px;background:#020617;justify-content:center}
+.tab{padding:10px 16px;border-radius:8px;border:1px solid #1e293b;cursor:pointer}
 .tab.active{background:#1e293b}
-.container{max-width:1000px;margin:auto;padding:16px}
-.card{background:var(--card);border-radius:16px;padding:24px;margin-top:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.item{border:1px solid var(--border);padding:16px;border-radius:12px}
+.container{max-width:900px;margin:auto;padding:20px}
+.card{background:#020617;border-radius:16px;padding:24px;margin-top:20px}
+.badge{padding:6px 12px;border-radius:20px;background:#1e293b;display:inline-block}
 .hidden{display:none}
 </style>
 </head>
@@ -22,32 +20,42 @@ body{margin:0;font-family:Inter,Arial;background:var(--bg);color:white}
 <div class="header">
   <div class="tab active" onclick="show('macro')">Macro</div>
   <div class="tab" onclick="show('gold')">Gold</div>
+  <div class="tab" onclick="show('nasdaq')">Nasdaq</div>
 </div>
-
 <div class="container">
   <div id="macro" class="card">
     <h2 id="macro_state"></h2>
+    <div class="badge">Score: <span id="macro_score"></span></div>
+    <p id="macro_exp"></p>
   </div>
-
   <div id="gold" class="card hidden">
     <h2 id="gold_state"></h2>
-    <div class="grid">
-      <div class="item">Real Yields</div>
-      <div class="item">Dollar</div>
-      <div class="item">Risk</div>
-    </div>
+    <div class="badge">Score: <span id="gold_score"></span></div>
+    <p id="gold_exp"></p>
+  </div>
+  <div id="nasdaq" class="card hidden">
+    <h2 id="nasdaq_state"></h2>
+    <div class="badge">Score: <span id="nasdaq_score"></span></div>
+    <p id="nasdaq_exp"></p>
   </div>
 </div>
-
 <script>
-const data = __DATA__ || {};
+const data=__DATA__||{};
 if(data.macro){
- document.getElementById("macro_state").innerText = data.macro.macro_state;
+ macro_state.innerText=data.macro.state;
+ macro_score.innerText=data.macro.score;
+ macro_exp.innerText=data.macro.explanation;
 }
 if(data.gold){
- document.getElementById("gold_state").innerText = data.gold.gold_state;
+ gold_state.innerText=data.gold.state;
+ gold_score.innerText=data.gold.score;
+ gold_exp.innerText=data.gold.explanation;
 }
-
+if(data.nasdaq){
+ nasdaq_state.innerText=data.nasdaq.state;
+ nasdaq_score.innerText=data.nasdaq.score;
+ nasdaq_exp.innerText=data.nasdaq.explanation;
+}
 function show(id){
  document.querySelectorAll('.card').forEach(c=>c.classList.add('hidden'));
  document.getElementById(id).classList.remove('hidden');
