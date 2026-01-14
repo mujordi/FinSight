@@ -1,31 +1,15 @@
 
 def gold_model(macro):
-    score = 0
-    parameters = []
+    score=0; details=[]
+    def add(n,s,i,e):
+        nonlocal score; score+=i
+        details.append({"name":n,"signal":s,"impact":i,"explanation":e})
 
-    for p in macro["parameters"]:
-        impact = 0
-        if p["parameter"] == "Real Yield (10Y)" and p["signal"] == "positive":
-            impact = 2
-        if p["parameter"] == "US Dollar Index (DXY)" and p["signal"] == "positive":
-            impact = 2
-        if p["parameter"] == "Equity Volatility (VIX)" and p["signal"] == "negative":
-            impact = 1
-        score += impact
+    ry=next(p for p in macro["parameters"] if "Real Yield" in p["name"])
+    usd=next(p for p in macro["parameters"] if "Dollar" in p["name"])
 
-        parameters.append({
-            "parameter": p["parameter"],
-            "real_value": p["real_value"],
-            "signal": p["signal"],
-            "impact": impact,
-            "explanation": "Macro variable influencing gold demand."
-        })
+    add("Real Yields",ry["signal"],2 if ry["signal"]=="negative" else 0,"Gold inversely correlated to real yields")
+    add("USD Strength",usd["signal"],2 if usd["signal"]=="negative" else 0,"Strong USD pressures gold")
 
-    state = "BULLISH" if score >= 4 else "NEUTRAL" if score >= 2 else "UNFAVORABLE"
-
-    return {
-        "state": state,
-        "score": score,
-        "explanation": "Gold is sensitive to real yields, dollar trends and risk aversion.",
-        "parameters": parameters
-    }
+    view="Attractive" if score>=2 else "Neutral"
+    return {"score":score,"view":view,"drivers":details}

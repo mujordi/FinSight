@@ -1,36 +1,43 @@
 
-<!doctype html><html><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
 <title>FinSight</title>
+<link rel="stylesheet" href="/static/styles.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-body{margin:0;font-family:Arial;background:#0f172a;color:white}
-header{padding:20px;text-align:center;background:#020617}
-nav{display:flex;gap:10px;justify-content:center;margin-top:10px}
-nav button{background:#020617;color:white;border:1px solid #334155;padding:10px 16px;border-radius:10px}
-section{max-width:1200px;margin:auto;padding:24px}
-.card{background:#020617;border-radius:16px;padding:24px;margin-bottom:24px}
-.asset{display:inline-block;padding:8px 14px;border-radius:14px;margin:4px}
-.green{background:#16a34a}.yellow{background:#eab308}.red{background:#dc2626}
-table{width:100%;border-collapse:collapse;margin-top:16px}
-th,td{text-align:left;padding:10px;border-bottom:1px solid #1e293b}
-canvas{max-height:300px}
-</style></head><body>
-<header><h1>FinSight</h1><p>Macro & Product Intelligence</p><nav id="tabs"></nav></header>
-<section id="content"></section>
+</head>
+<body>
+<header>
+<h1>FinSight</h1>
+<nav>
+<button onclick="tab('macro')">Macro</button>
+<button onclick="tab('gold')">Gold</button>
+<button onclick="tab('equities')">Equities</button>
+</nav>
+</header>
+
+<section id="macro" class="tab active">
+<h2>Macro – <span id="state"></span></h2>
+<table id="macroTable"></table>
+<div><canvas id="dxy"></canvas></div>
+<div><canvas id="eur"></canvas></div>
+<div><canvas id="jpy"></canvas></div>
+</section>
+
+<section id="gold" class="tab">
+<h2>Gold</h2>
+<canvas id="goldChart"></canvas>
+</section>
+
+<section id="equities" class="tab">
+<h2>Equities</h2>
+<canvas id="nasdaqChart"></canvas>
+</section>
+
 <script>
-const D=__DATA__,content=document.getElementById("content"),tabs=document.getElementById("tabs");
-D.tabs.forEach(t=>{let b=document.createElement("button");b.innerText=t.name;b.onclick=()=>render(t.type);tabs.appendChild(b);});
-function render(type){
- if(type==="macro"){
-  content.innerHTML=`<div class="card"><h2>${D.macro.state} (Score ${D.macro.score})</h2>
-  ${D.assets.map(a=>`<span class="asset ${a.color}">${a.name}: ${a.view}</span>`).join("")}
-  <table><tr><th>Parameter</th><th>Value</th><th>Signal</th><th>Impact</th><th>Explanation</th></tr>
-  ${D.macro.parameters.map(p=>`<tr><td>${p.name}</td><td>${p.value}</td><td>${p.signal}</td><td>${p.impact}</td><td>${p.explanation}</td></tr>`).join("")}</table></div>
-  <div class="card"><canvas id="ry"></canvas></div><div class="card"><canvas id="dx"></canvas></div>`;
-  new Chart(document.getElementById("ry"),{type:"line",data:{labels:D.series.real_yield.map((_,i)=>i),datasets:[{label:"Real Yield",data:D.series.real_yield,borderColor:"yellow"}]}});
-  new Chart(document.getElementById("dx"),{type:"line",data:{labels:D.series.dollar.map((_,i)=>i),datasets:[{label:"Dollar Index",data:D.series.dollar,borderColor:"cyan"}]}});
- } else content.innerHTML=`<div class="card"><h2>${type.toUpperCase()}</h2><p>Detailed model coming next.</p></div>`;
-}
-render("macro");
-</script></body></html>
+const DATA=__DATA__;
+</script>
+<script src="/static/app.js"></script>
+</body>
+</html>

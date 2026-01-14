@@ -1,18 +1,12 @@
 
-from datetime import datetime
+import datetime, json
 from data_fetcher import snapshot, series
 from macro_core import macro_core
-from asset_layer import assets
-from products import PRODUCT_TABS
-from storage import save
 
-macro=macro_core(snapshot())
 state={
- "updated":datetime.utcnow().isoformat(),
- "macro":macro,
- "assets":assets(macro["state"]),
- "tabs":PRODUCT_TABS,
+ "date":datetime.date.today().isoformat(),
+ "macro":macro_core(snapshot()),
  "series":series()
 }
-save(state)
+json.dump(state,open("state.json","w"),indent=2)
 print(state)

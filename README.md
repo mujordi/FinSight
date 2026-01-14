@@ -1,7 +1,8 @@
 
-FinSight v5 – Advanced Macro & Product Dashboard
+FULL ONEPAGE REAL VERSION
 
-Steps:
-1) pip install -r requirements.txt
-2) python daily_job.py
-3) uvicorn main:app --reload
+1) export FRED_API_KEY=your_key
+2) pip install -r requirements.txt
+3) python daily_job.py
+4) uvicorn main:app --reload
+Open http://127.0.0.1:8000
