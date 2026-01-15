@@ -2,13 +2,12 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-import json
+from datetime import date
 
-app=FastAPI()
-app.mount("/static",StaticFiles(directory="static"),name="static")
+app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get("/",response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 def home():
-    d=json.load(open("state.json"))
-    html=open("templates/index.html",encoding="utf-8").read()
-    return html.replace("__DATA__",json.dumps(d))
+    html = open("templates/index.html", encoding="utf-8").read()
+    return html.replace("__DATE__", date.today().isoformat())

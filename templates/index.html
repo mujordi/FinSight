@@ -5,39 +5,147 @@
 <meta charset="utf-8">
 <title>FinSight</title>
 <link rel="stylesheet" href="/static/styles.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <header>
 <h1>FinSight</h1>
+<p class="date">Daily report: <b>__DATE__</b></p>
 <nav>
 <button onclick="tab('macro')">Macro</button>
 <button onclick="tab('gold')">Gold</button>
 <button onclick="tab('equities')">Equities</button>
+<button onclick="tab('crypto')">Crypto</button>
+<button onclick="tab('fixedincome')">Fixed Income</button>
+<button onclick="tab('thematic')">Thematic</button>
+<button onclick="tab('growth')">Growth / Quality</button>
 </nav>
 </header>
 
 <section id="macro" class="tab active">
-<h2>Macro – <span id="state"></span></h2>
-<table id="macroTable"></table>
-<div><canvas id="dxy"></canvas></div>
-<div><canvas id="eur"></canvas></div>
-<div><canvas id="jpy"></canvas></div>
+<h2>Macro Model</h2>
+<table>
+<thead><tr><th>Parameter</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Real Yields</td><td class="red">Negative</td><td>High</td><td>High real yields pressure valuations</td></tr>
+<tr><td>Inflation</td><td class="yellow">Neutral</td><td>Medium</td><td>Disinflation ongoing</td></tr>
+<tr><td>Yield Curve</td><td class="green">Positive</td><td>Medium</td><td>Curve re-steepening</td></tr>
+<tr><td>Dollar</td><td class="yellow">Neutral</td><td>High</td><td>Dollar stable</td></tr>
+<tr><td>VIX</td><td class="green">Positive</td><td>Medium</td><td>Low volatility</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=ICEUS:DXY&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=FX:EURUSD&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=FX:USDJPY&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CBOE:VIX&interval=1D"></iframe></div>
+</div>
 </section>
 
 <section id="gold" class="tab">
-<h2>Gold</h2>
-<canvas id="goldChart"></canvas>
+<h2>Gold Model</h2>
+<table>
+<thead><tr><th>Driver</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Real Yields</td><td class="red">Negative</td><td>High</td><td>Inverse relationship with gold</td></tr>
+<tr><td>USD</td><td class="yellow">Neutral</td><td>High</td><td>Dollar consolidation</td></tr>
+<tr><td>Inflation Hedge</td><td class="green">Positive</td><td>Medium</td><td>Sticky inflation supports gold</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=COMEX:GC1!&interval=1D"></iframe></div>
+</div>
 </section>
 
 <section id="equities" class="tab">
-<h2>Equities</h2>
-<canvas id="nasdaqChart"></canvas>
+<h2>Equities Model</h2>
+<table>
+<thead><tr><th>Factor</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Liquidity</td><td class="yellow">Neutral</td><td>High</td><td>Financial conditions stable</td></tr>
+<tr><td>Growth</td><td class="green">Positive</td><td>Medium</td><td>Earnings resilience</td></tr>
+<tr><td>Valuations</td><td class="red">Negative</td><td>Medium</td><td>Valuations elevated</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:NDX&interval=1D"></iframe></div>
+</div>
 </section>
 
-<script>
-const DATA=__DATA__;
-</script>
+<section id="crypto" class="tab">
+<h2>Crypto Model</h2>
+<table>
+<thead><tr><th>Factor</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Global Liquidity</td><td class="green">Positive</td><td>High</td><td>Liquidity expansion supports crypto</td></tr>
+<tr><td>Risk Appetite</td><td class="green">Positive</td><td>Medium</td><td>Low volatility favors risk assets</td></tr>
+<tr><td>USD Trend</td><td class="yellow">Neutral</td><td>High</td><td>Dollar consolidation</td></tr>
+<tr><td>Regulation</td><td class="yellow">Neutral</td><td>Low</td><td>Regulatory clarity improving</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=BITSTAMP:BTCUSD&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=BITSTAMP:ETHUSD&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=CRYPTOCAP:TOTAL&interval=1D"></iframe></div>
+</div>
+</section>
+
+<section id="fixedincome" class="tab">
+<h2>Fixed Income Model</h2>
+<table>
+<thead><tr><th>Factor</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Real Rates Level</td><td class="red">Negative</td><td>High</td><td>High real yields pressure bond prices</td></tr>
+<tr><td>Yield Curve Shape</td><td class="yellow">Neutral</td><td>High</td><td>Curve still relatively flat</td></tr>
+<tr><td>Inflation Trend</td><td class="green">Positive</td><td>Medium</td><td>Disinflation supports duration</td></tr>
+<tr><td>Central Bank Policy</td><td class="yellow">Neutral</td><td>Medium</td><td>Policy restrictive but stable</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=FRED:DGS10&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=FRED:DGS2&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=FRED:T10YIE&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=AMEX:TLT&interval=1D"></iframe></div>
+</div>
+</section>
+
+<section id="thematic" class="tab">
+<h2>Thematic / Secular Trends Model</h2>
+<table>
+<thead><tr><th>Theme</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Semiconductors (AI)</td><td class="green">Positive</td><td>High</td><td>AI capex cycle strong</td></tr>
+<tr><td>Quantum Computing</td><td class="yellow">Neutral</td><td>Medium</td><td>Early stage adoption</td></tr>
+<tr><td>Uranium / Nuclear</td><td class="green">Positive</td><td>Medium</td><td>Energy transition tailwinds</td></tr>
+<tr><td>Clean Energy Policy</td><td class="yellow">Neutral</td><td>Low</td><td>Policy dependent</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:SMH&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:NVDA&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NYSE:URA&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:QTUM&interval=1D"></iframe></div>
+</div>
+</section>
+
+<section id="growth" class="tab">
+<h2>Growth / Quality Equities Model</h2>
+<table>
+<thead><tr><th>Factor</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>Real Yields Sensitivity</td><td class="red">Negative</td><td>High</td><td>Higher real yields compress multiples</td></tr>
+<tr><td>Earnings Growth</td><td class="green">Positive</td><td>High</td><td>Strong earnings momentum</td></tr>
+<tr><td>Balance Sheet Quality</td><td class="green">Positive</td><td>Medium</td><td>Low leverage, high margins</td></tr>
+<tr><td>AI Exposure</td><td class="green">Positive</td><td>Medium</td><td>Structural AI tailwinds</td></tr>
+</tbody>
+</table>
+<div class="grid">
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:NDX&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:GOOGL&interval=1D"></iframe></div>
+<div class="chart"><iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:MSFT&interval=1D"></iframe></div>
+</div>
+</section>
+
 <script src="/static/app.js"></script>
 </body>
 </html>
