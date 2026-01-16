@@ -42,6 +42,7 @@ Daily report: <b>{{ today }}</b>
 </div>
 <nav role="navigation" aria-label="Main navigation">
 <button onclick="tab('model')" aria-label="View Model Framework">📊 Model</button>
+<button onclick="tab('portafolio')" aria-label="View Portfolio">💼 Portfolio</button>
 <button onclick="tab('macro')" aria-label="View Macro analysis" class="active">Macro</button>
 <button onclick="tab('gold')" aria-label="View Gold analysis">Gold</button>
 <button onclick="tab('equities')" aria-label="View Equities analysis">Equities</button>
@@ -57,6 +58,7 @@ Daily report: <b>{{ today }}</b>
 
 
 {% include "tabs/model.html" %}
+{% include "tabs/portafolio.html" %}
 {% include "tabs/macro.html" %}
 {% include "tabs/gold.html" %}
 {% include "tabs/equities.html" %}

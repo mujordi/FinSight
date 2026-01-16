@@ -1,0 +1,21 @@
+{
+  "username": "demo",
+  "products": [
+    {
+      "id": "ae96e459-4daf-4d9c-967c-d85191dd34c8",
+      "name": "B&H Bonds",
+      "ticker": "LU1988110927",
+      "type": "Stock",
+      "model": "Fixed Income",
+      "percentage": 5.0
+    },
+    {
+      "id": "4ea8ff19-eb0c-4dfb-98bb-fc4552f40c96",
+      "name": "Wcm Selecct Global Gowth Equity",
+      "ticker": "LU2338974699",
+      "type": "Stock",
+      "model": "Equities",
+      "percentage": 3.0
+    }
+  ]
+}

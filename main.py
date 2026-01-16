@@ -1,11 +1,12 @@
 
-from fastapi import FastAPI, Request, Response, Cookie
+from fastapi import FastAPI, Request, Response, Cookie, UploadFile, File
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from datetime import date
 from jinja2 import Environment, FileSystemLoader
 from auth import AuthManager
 from market_data_fast import FastMarketData
+from portfolio_manager import PortfolioManager
 from pydantic import BaseModel
 from typing import Optional
 
@@ -14,9 +15,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 env = Environment(loader=FileSystemLoader("templates"))
 
-# Initialize auth manager and fast market data
+# Initialize managers
 auth_manager = AuthManager()
 fast_data = FastMarketData()
+portfolio_manager = PortfolioManager()
 
 def get_market_data():
     """Lazy initialization of REAL market data fetcher (slow)"""
@@ -285,3 +287,58 @@ async def get_highbeta_data_endpoint(auth_token: Optional[str] = Cookie(None)):
             content={"error": str(e)},
             status_code=500
         )
+
+# ===== PORTFOLIO ENDPOINTS =====
+
+class AddProductRequest(BaseModel):
+    name: str
+    ticker: str
+    percentage: float
+
+@app.get("/api/portfolio")
+async def get_portfolio(auth_token: Optional[str] = Cookie(None)):
+    '''Get user portfolio'''
+    if not check_auth(auth_token):
+        return JSONResponse(content={"error": "Unauthorized"}, status_code=401)
+    
+    username = auth_manager.get_username(auth_token)
+    portfolio = portfolio_manager.load_portfolio(username)
+    return JSONResponse(content=portfolio)
+
+@app.post("/api/portfolio/add")
+async def add_product(request: AddProductRequest, auth_token: Optional[str] = Cookie(None)):
+    '''Add product to portfolio'''
+    if not check_auth(auth_token):
+        return JSONResponse(content={"error": "Unauthorized"}, status_code=401)
+    
+    username = auth_manager.get_username(auth_token)
+    product = portfolio_manager.add_product(
+        username, 
+        request.name, 
+        request.ticker, 
+        request.percentage
+    )
+    return JSONResponse(content=product)
+
+@app.delete("/api/portfolio/remove/{product_id}")
+async def remove_product(product_id: str, auth_token: Optional[str] = Cookie(None)):
+    '''Remove product from portfolio'''
+    if not check_auth(auth_token):
+        return JSONResponse(content={"error": "Unauthorized"}, status_code=401)
+    
+    username = auth_manager.get_username(auth_token)
+    success = portfolio_manager.remove_product(username, product_id)
+    return JSONResponse(content={"success": success})
+
+@app.post("/api/portfolio/import-csv")
+async def import_csv(file: UploadFile = File(...), auth_token: Optional[str] = Cookie(None)):
+    '''Import portfolio from CSV'''
+    if not check_auth(auth_token):
+        return JSONResponse(content={"error": "Unauthorized"}, status_code=401)
+    
+    username = auth_manager.get_username(auth_token)
+    content = await file.read()
+    csv_content = content.decode('utf-8')
+    
+    result = portfolio_manager.import_from_csv(username, csv_content)
+    return JSONResponse(content=result)

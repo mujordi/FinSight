@@ -1,0 +1,162 @@
+
+<section id="portafolio" class="tab">
+<div class="tab-header">
+<h2>💼 Portfolio</h2>
+<div class="portfolio-actions">
+<button id="export-csv-btn" class="action-btn">📥 Export CSV</button>
+</div>
+</div>
+
+<!-- Add Product Section -->
+<div class="portfolio-section">
+<h3>Add Product</h3>
+<div class="add-product-form">
+<div class="form-row">
+<div class="form-group">
+<label for="product-name">Product Name *</label>
+<input type="text" id="product-name" placeholder="e.g., NVIDIA, VanEck Semiconductor..." required>
+</div>
+<div class="form-group">
+<label for="product-ticker">Ticker (optional)</label>
+<input type="text" id="product-ticker" placeholder="e.g., NVDA" style="text-transform: uppercase;">
+</div>
+<div class="form-group">
+<label for="product-percentage">% Portfolio *</label>
+<input type="number" id="product-percentage" placeholder="0.00" min="0" max="100" step="0.01" required>
+</div>
+<div class="form-group">
+<button id="add-product-btn" class="btn-primary">➕ Add</button>
+</div>
+</div>
+</div>
+
+<!-- Import CSV -->
+<div class="import-csv-section">
+<label for="csv-upload" class="upload-label">
+📄 Import CSV
+<input type="file" id="csv-upload" accept=".csv" style="display: none;">
+</label>
+<small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+CSV format: <code>name, ticker, percentage</code>
+</small>
+</div>
+</div>
+
+<!-- Distribution by Model -->
+<div class="portfolio-section">
+<h3>📊 Distribution by Model</h3>
+<div class="distribution-grid" id="distribution-grid">
+<div class="distribution-card" data-model="Gold">
+<div class="model-icon">🥇</div>
+<div class="model-name">Gold</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="Equities">
+<div class="model-icon">📈</div>
+<div class="model-name">Equities</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="Crypto">
+<div class="model-icon">₿</div>
+<div class="model-name">Crypto</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="Thematic">
+<div class="model-icon">🎯</div>
+<div class="model-name">Thematic</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="Growth">
+<div class="model-icon">🚀</div>
+<div class="model-name">Growth</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="High Beta">
+<div class="model-icon">⚡</div>
+<div class="model-name">High Beta</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="Fixed Income">
+<div class="model-icon">📊</div>
+<div class="model-name">Fixed Income</div>
+<div class="model-percentage">0%</div>
+</div>
+<div class="distribution-card" data-model="Macro">
+<div class="model-icon">🌍</div>
+<div class="model-name">Macro</div>
+<div class="model-percentage">0%</div>
+</div>
+</div>
+<div class="total-allocation" id="total-allocation">
+Total Allocation: <strong>0%</strong>
+</div>
+</div>
+
+<!-- Products Table -->
+<div class="portfolio-section">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+<h3 style="margin: 0;">📋 Holdings</h3>
+<div class="view-toggle">
+<button id="view-by-product" class="toggle-btn active">By Product</button>
+<button id="view-by-type" class="toggle-btn">By Type</button>
+</div>
+</div>
+
+<!-- By Product View -->
+<div id="product-view" class="table-wrapper">
+<table id="portfolio-table">
+<thead>
+<tr>
+<th>Product</th>
+<th>Ticker</th>
+<th>Type</th>
+<th>Model</th>
+<th>% Portfolio</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="portfolio-tbody">
+<tr class="empty-state">
+<td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+No products yet. Add your first product above! 👆
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- By Type View -->
+<div id="type-view" class="table-wrapper" style="display: none;">
+<table id="type-table">
+<thead>
+<tr>
+<th>Type</th>
+<th>Products Count</th>
+<th>% Portfolio</th>
+<th>Products</th>
+</tr>
+</thead>
+<tbody id="type-tbody">
+<tr class="empty-state">
+<td colspan="4" style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+No products yet.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Pie Chart Section -->
+<div class="portfolio-section">
+<h3>📊 Product Type Distribution</h3>
+<div class="chart-container">
+<canvas id="type-pie-chart"></canvas>
+</div>
+<div id="chart-legend" class="chart-legend"></div>
+</div>
+
+</section>
+
+<script src="/static/portfolio.js"></script>
+
