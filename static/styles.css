@@ -26,13 +26,26 @@
 }
 
 /* ===== BASE STYLES ===== */
-body {
+html, body {
   margin: 0;
+  padding: 0;
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Prevent any element from causing horizontal overflow */
+*, *::before, *::after {
+  max-width: 100%;
+}
+
+.tab, .grid, .chart-wrapper, header, nav {
+  max-width: 100%;
 }
 
 /* ===== HEADER ===== */
@@ -752,149 +765,266 @@ tbody tr:last-child td {
 }
 
 @media (max-width: 768px) {
+  /* Prevent any horizontal overflow */
+  body, html, .tab, header, nav {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   header {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
   }
 
   header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     letter-spacing: -0.3px;
+  }
+
+  /* Navigation scrollable horizontally */
+  nav {
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 1rem;
+    margin: 0;
   }
 
   nav button {
     padding: 0.6rem 1rem;
-    font-size: 0.85rem;
-    min-height: 44px; /* iOS touch target */
+    font-size: 0.8rem;
+    min-height: 44px;
+    white-space: nowrap;
+    flex: 0 0 auto;
   }
 
   .tab {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
+    max-width: 100vw;
   }
 
   .tab h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
   }
 
+  /* Grid: 1 column on mobile, full width */
   .grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Chart wrapper full width */
+  .chart-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem;
+    margin: 0;
   }
 
   .chart {
-    height: 240px;
-  }
-  
-  .chart-wrapper {
-    padding: 0.75rem;
+    height: 260px;
+    width: 100% !important;
   }
 
-  /* Make tables scrollable on mobile */
+  /* Table container with scroll */
   table {
     display: block;
+    width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
     white-space: nowrap;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Table wrapper to control overflow */
+  .tab table {
+    max-width: 100vw;
+  }
+
+  thead, tbody, tr {
+    display: table;
+    width: 100%;
+    table-layout: auto;
   }
 
   th, td {
-    padding: 0.75rem 0.5rem;
-    font-size: 0.85rem;
+    padding: 0.65rem 0.4rem;
+    font-size: 0.75rem;
   }
   
-  /* Value cells more compact on mobile */
+  /* Compact cells */
   .value-cell {
-    min-width: 100px;
-    font-size: 0.8rem;
+    min-width: 90px;
+    font-size: 0.75rem;
   }
   
   .value-number {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .change-indicator {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.4rem;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
   }
   
-  /* Signal badges smaller on mobile */
   .signal-cell,
   .weight-cell {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .explanation-cell {
-    font-size: 0.8rem;
-    max-width: 200px;
-    white-space: normal; /* Allow wrapping */
+    font-size: 0.75rem;
+    max-width: 180px;
+    white-space: normal;
   }
   
-  /* Time selector compact */
+  /* Time selector */
+  .time-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.75rem;
+  }
+  
   .time-selector button {
-    padding: 0.35rem 0.65rem;
+    padding: 0.4rem 0.6rem;
     font-size: 0.7rem;
-    min-width: 38px;
+    min-width: 40px;
   }
   
-  /* Last update indicator */
+  /* Last update */
   #last-update {
     bottom: 10px;
     right: 10px;
+    left: auto;
     padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
   
   /* Refresh button */
   #refresh-data-btn {
-    padding: 0.5rem 0.9rem;
-    font-size: 0.85rem;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.75rem;
     margin-left: 0.5rem;
+  }
+  
+  /* Header date line */
+  .date {
+    font-size: 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
   }
 }
 
 @media (max-width: 480px) {
+  /* Extra small mobile optimization */
+  html, body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 0.75rem 0.5rem;
+  }
+
   header h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   nav {
-    gap: 0.4rem;
-    flex-wrap: nowrap; /* No wrap on mobile, scroll instead */
+    gap: 0.35rem;
+    flex-wrap: nowrap;
     justify-content: flex-start;
-    padding: 0 1rem;
+    padding: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   nav button {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.75rem;
-    flex: 0 0 auto; /* Don't shrink */
+    padding: 0.55rem 0.75rem;
+    font-size: 0.7rem;
+    flex: 0 0 auto;
     min-width: auto;
-    min-height: 44px; /* iOS touch target */
+    min-height: 42px;
     white-space: nowrap;
   }
 
+  .tab {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .tab h2 {
+    font-size: 1.25rem;
+  }
+
+  /* Tables very compact */
+  table {
+    font-size: 0.7rem;
+  }
+
   th, td {
-    padding: 0.5rem 0.4rem;
+    padding: 0.5rem 0.3rem;
+    font-size: 0.7rem;
+  }
+  
+  .value-cell {
+    min-width: 70px;
+  }
+  
+  .value-number {
     font-size: 0.75rem;
   }
   
+  .change-indicator {
+    font-size: 0.6rem;
+  }
+  
+  .explanation-cell {
+    max-width: 120px;
+    font-size: 0.7rem;
+  }
+  
   .date {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
   }
   
   #refresh-data-btn {
     padding: 0.4rem 0.7rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     margin-left: 0.25rem;
   }
   
-  /* Compact grid for very small screens */
+  /* Charts */
   .grid {
-    gap: 0.75rem;
+    gap: 1rem;
   }
   
   .chart {
-    height: 220px;
+    height: 200px;
+  }
+  
+  .chart-wrapper {
+    padding: 0.5rem;
+  }
+  
+  /* Time selector */
+  .time-selector button {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.65rem;
+    min-width: 34px;
+  }
+  
+  /* Last update smaller */
+  #last-update {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+    bottom: 8px;
+    right: 8px;
   }
 }
 
