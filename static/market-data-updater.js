@@ -141,6 +141,38 @@ const MarketDataUpdater = {
     }
   },
 
+  // Update sentiment indicator (semàfor)
+  updateSentimentIndicator(tabId, sentiment) {
+    const indicator = document.querySelector(`.sentiment-indicator[data-tab="${tabId}"]`);
+    if (!indicator) return;
+
+    const badge = indicator.querySelector('.sentiment-badge');
+    const textElement = indicator.querySelector('.sentiment-text');
+    const scoreElement = indicator.querySelector('.sentiment-score');
+
+    if (!badge || !textElement || !scoreElement) return;
+
+    // Remove old classes
+    badge.classList.remove('bullish', 'neutral', 'bearish');
+
+    // Add new class and update text
+    const sentimentType = sentiment.sentiment.toLowerCase();
+    badge.classList.add(sentimentType);
+    
+    textElement.textContent = sentiment.sentiment.toUpperCase();
+    
+    // Format score with + or -
+    const score = sentiment.score;
+    const scoreText = score > 0 ? `+${score}%` : `${score}%`;
+    scoreElement.textContent = scoreText;
+
+    // Add animation
+    badge.style.animation = 'none';
+    setTimeout(() => {
+      badge.style.animation = 'fadeIn 0.4s ease-in-out';
+    }, 10);
+  },
+
   // Update signal, weight, and explanation cells
   updateSignalCells(tab, signals) {
     const signalCells = tab.querySelectorAll('.signal-cell');
@@ -234,8 +266,9 @@ const MarketDataUpdater = {
       const allData = await response.json();
       this.lastUpdate = new Date(allData.last_update);
 
-      // Extract signals if present
+      // Extract signals and sentiments if present
       const signals = allData.signals || {};
+      const sentiments = signals.sentiments || {};
 
       // Update cache for all data sources
       Object.keys(this.config.tabDataSources).forEach(tabId => {
@@ -248,6 +281,11 @@ const MarketDataUpdater = {
             timestamp: Date.now()
           };
           this.applyDataToTab(tabId, allData[dataKey], signals);
+          
+          // Update sentiment indicator if available
+          if (sentiments[tabId]) {
+            this.updateSentimentIndicator(tabId, sentiments[tabId]);
+          }
         }
       });
 

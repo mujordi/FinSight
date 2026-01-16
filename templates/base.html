@@ -3,9 +3,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="description" content="FinSight - Financial market analysis dashboard with macro, equities, crypto, and thematic insights">
 <meta name="author" content="FinSight">
+<meta name="theme-color" content="#1e293b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FinSight">
+<meta name="format-detection" content="telephone=no">
 <title>FinSight - Financial Market Analysis Dashboard</title>
 <link rel="stylesheet" href="/static/styles.css">
 <!-- Chart.js for interactive charts -->
@@ -22,6 +27,7 @@ Daily report: <b>{{ today }}</b>
 </button>
 </p>
 <nav role="navigation" aria-label="Main navigation">
+<button onclick="tab('model')" aria-label="View Model Framework">📊 Model</button>
 <button onclick="tab('macro')" aria-label="View Macro analysis" class="active">Macro</button>
 <button onclick="tab('gold')" aria-label="View Gold analysis">Gold</button>
 <button onclick="tab('equities')" aria-label="View Equities analysis">Equities</button>
@@ -36,6 +42,7 @@ Daily report: <b>{{ today }}</b>
 <main role="main">
 
 
+{% include "tabs/model.html" %}
 {% include "tabs/macro.html" %}
 {% include "tabs/gold.html" %}
 {% include "tabs/equities.html" %}

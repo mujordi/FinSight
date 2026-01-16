@@ -417,16 +417,73 @@ class ModelLogic:
         return signals
     
     @staticmethod
-    def calculate_all_signals(market_data: Dict) -> Dict:
-        """Calculate all model signals"""
+    def calculate_sentiment(signals: Dict) -> Dict:
+        """Calculate overall sentiment (BULLISH/NEUTRAL/BEARISH) from signals"""
+        if not signals:
+            return {'sentiment': 'neutral', 'score': 0}
+        
+        score = 0
+        total_weight = 0
+        
+        for key, data in signals.items():
+            signal = data.get('signal', 'neutral')
+            weight = data.get('weight', 'medium')
+            
+            # Weight values
+            weight_value = {'high': 3, 'medium': 2, 'low': 1}.get(weight, 2)
+            
+            # Signal values
+            if signal == 'positive':
+                score += weight_value
+            elif signal == 'negative':
+                score -= weight_value
+            # neutral adds 0
+            
+            total_weight += weight_value
+        
+        # Calculate percentage
+        if total_weight > 0:
+            percentage = (score / total_weight) * 100
+        else:
+            percentage = 0
+        
+        # Determine sentiment
+        if percentage > 30:
+            sentiment = 'bullish'
+        elif percentage < -30:
+            sentiment = 'bearish'
+        else:
+            sentiment = 'neutral'
+        
         return {
-            'macro': ModelLogic.calculate_macro_signals(market_data.get('macro', {})),
-            'crypto': ModelLogic.calculate_crypto_signals(
-                market_data.get('crypto', {}),
-                market_data.get('macro', {})
-            ),
-            'equities': ModelLogic.calculate_equities_signals(market_data.get('equities', {})),
-            'growth': ModelLogic.calculate_growth_signals(market_data.get('growth', {})),
-            'highbeta': ModelLogic.calculate_highbeta_signals(market_data.get('highbeta', {}))
+            'sentiment': sentiment,
+            'score': round(percentage, 1)
+        }
+    
+    @staticmethod
+    def calculate_all_signals(market_data: Dict) -> Dict:
+        """Calculate all model signals with overall sentiment"""
+        macro_signals = ModelLogic.calculate_macro_signals(market_data.get('macro', {}))
+        crypto_signals = ModelLogic.calculate_crypto_signals(
+            market_data.get('crypto', {}),
+            market_data.get('macro', {})
+        )
+        equities_signals = ModelLogic.calculate_equities_signals(market_data.get('equities', {}))
+        growth_signals = ModelLogic.calculate_growth_signals(market_data.get('growth', {}))
+        highbeta_signals = ModelLogic.calculate_highbeta_signals(market_data.get('highbeta', {}))
+        
+        return {
+            'macro': macro_signals,
+            'crypto': crypto_signals,
+            'equities': equities_signals,
+            'growth': growth_signals,
+            'highbeta': highbeta_signals,
+            'sentiments': {
+                'macro': ModelLogic.calculate_sentiment(macro_signals),
+                'crypto': ModelLogic.calculate_sentiment(crypto_signals),
+                'equities': ModelLogic.calculate_sentiment(equities_signals),
+                'growth': ModelLogic.calculate_sentiment(growth_signals),
+                'highbeta': ModelLogic.calculate_sentiment(highbeta_signals)
+            }
         }
 

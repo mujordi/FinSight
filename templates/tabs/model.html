@@ -1,0 +1,253 @@
+
+<section id="model" class="tab">
+<h2>📊 Model Framework</h2>
+
+<div class="model-intro">
+<p class="intro-text">
+FinSight uses a quantitative model system that evaluates multiple market factors to generate investment signals. 
+Each model analyzes real-time data and assigns a <strong>Signal</strong> (Positive/Neutral/Negative), a <strong>Weight</strong> (High/Medium/Low), 
+and a dynamic <strong>Explanation</strong> based on objective thresholds.
+</p>
+</div>
+
+<div class="models-grid">
+
+<!-- Macro Model -->
+<div class="model-card">
+<h3>🌍 Macro Model</h3>
+<p class="model-description">Evaluates global macro conditions to determine risk context.</p>
+
+<div class="thresholds">
+<h4>Factors & Thresholds:</h4>
+
+<div class="threshold-item">
+<strong>Real Yields</strong>
+<ul>
+<li>> 2.5%: 🔴 Negative (High) - Extreme pressure on valuations</li>
+<li>1.5-2.5%: 🔴 Negative (High) - High pressure on valuations</li>
+<li>0.5-1.5%: 🟡 Neutral (Medium) - Moderate yields</li>
+<li>< 0.5%: 🟢 Positive (High) - Supports valuations</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>Inflation</strong>
+<ul>
+<li>> 4%: 🔴 Negative (High) - Erodes real returns</li>
+<li>3-4%: 🟡 Neutral (Medium) - Elevated inflation</li>
+<li>1.5-3%: 🟡 Neutral (Medium) - Near target</li>
+<li>< 1.5%: 🟢 Positive (Medium) - Supports loose policy</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>Yield Curve (10Y-2Y)</strong>
+<ul>
+<li>> 0.5%: 🟢 Positive (High) - Steep curve, strong growth</li>
+<li>0-0.5%: 🟢 Positive (Medium) - Re-steepening</li>
+<li>-0.5-0%: 🟡 Neutral (Medium) - Flat curve</li>
+<li>< -0.5%: 🔴 Negative (High) - Inverted, recession risk</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>Dollar (DXY)</strong>
+<ul>
+<li>> 110 or +1% daily: 🔴 Negative (High) - Strong dollar pressures risk</li>
+<li>105-110: 🟡 Neutral (High) - Dollar elevated</li>
+<li>Drop > 0.5%: 🟢 Positive (High) - Weak dollar supports risk</li>
+<li>Stable: 🟡 Neutral (High) - Consolidation</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>VIX</strong>
+<ul>
+<li>< 15: 🟢 Positive (High) - Very low volatility</li>
+<li>15-20: 🟢 Positive (Medium) - Low volatility</li>
+<li>20-30: 🟡 Neutral (Medium) - Elevated volatility</li>
+<li>> 30: 🔴 Negative (High) - High fear, risk-off</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Crypto Model -->
+<div class="model-card">
+<h3>₿ Crypto Model</h3>
+<p class="model-description">Evaluates crypto market based on prices and macro context.</p>
+
+<div class="thresholds">
+<h4>Factors & Thresholds:</h4>
+
+<div class="threshold-item">
+<strong>Bitcoin (BTC)</strong>
+<ul>
+<li>> $60k: 🟢 Positive (High) - Bull market</li>
+<li>$40-60k: 🟢 Positive (High) - Healthy, uptrend</li>
+<li>$30-40k: 🟡 Neutral (Medium) - Consolidation</li>
+<li>< $30k: 🔴 Negative (High) - Bear market</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>Ethereum (ETH)</strong>
+<ul>
+<li>> $3000: 🟢 Positive (High) - Strong, DeFi momentum</li>
+<li>$2000-3000: 🟢 Positive (High) - Healthy range</li>
+<li>$1500-2000: 🟡 Neutral (Medium) - Consolidation</li>
+<li>< $1500: 🔴 Negative (High) - Under pressure</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>Risk Appetite (VIX)</strong>
+<ul>
+<li>VIX < 20: 🟢 Positive (Medium) - Low vol favors crypto</li>
+<li>VIX > 20: 🔴 Negative (High) - High vol pressures speculative</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>USD Trend</strong>
+<ul>
+<li>Drop > 0.5%: 🟢 Positive (High) - Weak dollar supports</li>
+<li>Rise > 0.5%: 🔴 Negative (High) - Strong dollar pressures</li>
+<li>Stable: 🟡 Neutral (High) - Neutral</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Equities Model -->
+<div class="model-card">
+<h3>📈 Equities Model</h3>
+<p class="model-description">Evaluates equity indices and market valuations.</p>
+
+<div class="thresholds">
+<h4>Factors & Thresholds:</h4>
+
+<div class="threshold-item">
+<strong>Nasdaq 100 (NDX) - Momentum</strong>
+<ul>
+<li>Change > +1%: 🟢 Positive (High) - Strong momentum</li>
+<li>Change 0-1%: 🟢 Positive (Medium) - Positive trend</li>
+<li>Change -1-0%: 🟡 Neutral (Medium) - Consolidation</li>
+<li>Change < -1%: 🔴 Negative (High) - Tech weakness</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>S&P 500 (SPX) - Breadth</strong>
+<ul>
+<li>Change > +0.5%: 🟢 Positive (Medium) - Broad strength</li>
+<li>Change -0.5-0.5%: 🟡 Neutral (Medium) - Mixed</li>
+<li>Change < -0.5%: 🔴 Negative (Medium) - Broad weakness</li>
+</ul>
+</div>
+
+<div class="threshold-item">
+<strong>Valuations (P/E Ratio)</strong>
+<ul>
+<li>> 28x: 🔴 Negative (High) - Very expensive, bubble risk</li>
+<li>23-28x: 🔴 Negative (Medium) - Elevated above average</li>
+<li>18-23x: 🟡 Neutral (Medium) - Fair, near average</li>
+<li>< 18x: 🟢 Positive (High) - Attractive, opportunity</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Growth Stocks Model -->
+<div class="model-card">
+<h3>🚀 Growth Stocks Model</h3>
+<p class="model-description">Tracks quality and growth stocks (AAPL, GOOGL, MSFT, NDX).</p>
+
+<div class="thresholds">
+<h4>Momentum Thresholds:</h4>
+<ul>
+<li>Change > +2%: 🟢 Positive (High) - Strong momentum, outperformance</li>
+<li>Change 0-2%: 🟢 Positive (High) - Quality leadership</li>
+<li>Change -2-0%: 🟡 Neutral (Medium) - Consolidation</li>
+<li>Change < -2%: 🔴 Negative (Medium) - Pressure, watch supports</li>
+</ul>
+</div>
+</div>
+
+<!-- High Beta Model -->
+<div class="model-card">
+<h3>🎢 High Beta / Narrative Model</h3>
+<p class="model-description">High volatility stocks and speculative narratives (MSTR, PLTR, COIN, NVDA).</p>
+
+<div class="thresholds">
+<h4>Extreme Movement Thresholds:</h4>
+<ul>
+<li>Change > +5%: 🟢 Positive (High) - Explosive move, strong narrative</li>
+<li>Change +2-5%: 🟢 Positive (High) - Strong momentum, speculative appetite</li>
+<li>Change -2-2%: 🟡 Neutral (Medium) - Volatile but holding</li>
+<li>Change -5--2%: 🔴 Negative (Medium) - Weakness, risk-off pressure</li>
+<li>Change < -5%: 🔴 Negative (High) - Sharp selloff, narrative breaking</li>
+</ul>
+</div>
+</div>
+
+<!-- Gold Model -->
+<div class="model-card">
+<h3>🥇 Gold Model</h3>
+<p class="model-description">Gold as safe-haven asset and inflation hedge.</p>
+
+<div class="thresholds">
+<h4>Key Drivers:</h4>
+<ul>
+<li><strong>Real Yields:</strong> Inverse relationship with gold</li>
+<li><strong>USD:</strong> Strong dollar pressures gold, weak dollar supports it</li>
+<li><strong>Gold Price:</strong> Absolute levels indicate safe-haven sentiment</li>
+</ul>
+</div>
+</div>
+
+<!-- Fixed Income Model -->
+<div class="model-card">
+<h3>💰 Fixed Income Model</h3>
+<p class="model-description">Treasury bonds and fixed income market.</p>
+
+<div class="thresholds">
+<h4>Key Factors:</h4>
+<ul>
+<li><strong>US 10Y Yield:</strong> Long-term benchmark yield</li>
+<li><strong>US 2Y Yield:</strong> Short-term yield, Fed-sensitive</li>
+<li><strong>Yield Curve:</strong> 10Y-2Y slope indicates growth expectations</li>
+<li><strong>TLT ETF:</strong> Proxy for long bonds, inverse to yields</li>
+</ul>
+</div>
+</div>
+
+<!-- Thematic Model -->
+<div class="model-card">
+<h3>🔬 Thematic Model</h3>
+<p class="model-description">Secular trends and investment themes.</p>
+
+<div class="thresholds">
+<h4>Themes Tracked:</h4>
+<ul>
+<li><strong>Semiconductors (SMH):</strong> AI capex cycle</li>
+<li><strong>NVIDIA:</strong> AI chip leadership</li>
+<li><strong>Uranium (URA):</strong> Nuclear renaissance</li>
+<li><strong>Clean Energy (ICLN):</strong> Energy transition</li>
+</ul>
+<p><em>Signals based on each asset's momentum.</em></p>
+</div>
+</div>
+
+</div>
+
+<div class="model-footer">
+<h3>⚙️ Update System</h3>
+<p>
+All data is sourced from <strong>Yahoo Finance</strong> via yfinance and automatically updated every <strong>60 seconds</strong>.
+Signals are recalculated in real-time based on defined thresholds. The system runs 24/7 without manual intervention.
+</p>
+</div>
+
+</section>
+
