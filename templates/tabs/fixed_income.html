@@ -1,0 +1,86 @@
+
+<section id="fixedincome" class="tab">
+<h2>Fixed Income Model</h2>
+<table>
+<thead>
+<tr><th>Factor</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>US 10Y Yield</td>
+<td class="value-cell" data-key="us10y"><span class="loading">Loading...</span></td>
+<td class="red">Negative</td>
+<td>High</td>
+<td>High yields pressure bond prices</td>
+</tr>
+<tr>
+<td>US 2Y Yield</td>
+<td class="value-cell" data-key="us2y"><span class="loading">Loading...</span></td>
+<td class="red">Negative</td>
+<td>High</td>
+<td>Front-end yields elevated</td>
+</tr>
+<tr>
+<td>Yield Curve (10Y-2Y)</td>
+<td class="value-cell" data-key="yield_curve"><span class="loading">Loading...</span></td>
+<td class="yellow">Neutral</td>
+<td>High</td>
+<td>Curve still relatively flat</td>
+</tr>
+<tr>
+<td>TLT (20+ Year Bonds)</td>
+<td class="value-cell" data-key="tlt"><span class="loading">Loading...</span></td>
+<td class="yellow">Neutral</td>
+<td>Medium</td>
+<td>Long duration positioning</td>
+</tr>
+</tbody>
+</table>
+
+<div class="grid">
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us10y', '1D', FinSightCharts.chartConfigs['chart-us10y'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us10y', '1W', FinSightCharts.chartConfigs['chart-us10y'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us10y', '1M', FinSightCharts.chartConfigs['chart-us10y'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us10y', '3M', FinSightCharts.chartConfigs['chart-us10y'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us10y', '1Y', FinSightCharts.chartConfigs['chart-us10y'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us10y', 'ALL', FinSightCharts.chartConfigs['chart-us10y'])">ALL</button>
+</div>
+<div class="chart" id="chart-us10y"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us2y', '1D', FinSightCharts.chartConfigs['chart-us2y'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us2y', '1W', FinSightCharts.chartConfigs['chart-us2y'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us2y', '1M', FinSightCharts.chartConfigs['chart-us2y'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us2y', '3M', FinSightCharts.chartConfigs['chart-us2y'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us2y', '1Y', FinSightCharts.chartConfigs['chart-us2y'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-us2y', 'ALL', FinSightCharts.chartConfigs['chart-us2y'])">ALL</button>
+</div>
+<div class="chart" id="chart-us2y"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-inflation', '1D', FinSightCharts.chartConfigs['chart-inflation'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-inflation', '1W', FinSightCharts.chartConfigs['chart-inflation'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-inflation', '1M', FinSightCharts.chartConfigs['chart-inflation'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-inflation', '3M', FinSightCharts.chartConfigs['chart-inflation'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-inflation', '1Y', FinSightCharts.chartConfigs['chart-inflation'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-inflation', 'ALL', FinSightCharts.chartConfigs['chart-inflation'])">ALL</button>
+</div>
+<div class="chart" id="chart-inflation"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-tlt', '1D', FinSightCharts.chartConfigs['chart-tlt'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-tlt', '1W', FinSightCharts.chartConfigs['chart-tlt'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-tlt', '1M', FinSightCharts.chartConfigs['chart-tlt'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-tlt', '3M', FinSightCharts.chartConfigs['chart-tlt'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-tlt', '1Y', FinSightCharts.chartConfigs['chart-tlt'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-tlt', 'ALL', FinSightCharts.chartConfigs['chart-tlt'])">ALL</button>
+</div>
+<div class="chart" id="chart-tlt"></div>
+</div>
+</div>
+</section>

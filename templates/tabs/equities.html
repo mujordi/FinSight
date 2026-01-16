@@ -1,0 +1,46 @@
+
+<section id="equities" class="tab">
+<h2>Equities Model</h2>
+<table>
+<thead>
+<tr><th>Factor</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Nasdaq 100 (NDX)</td>
+<td class="value-cell" data-key="ndx"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>Tech leadership continues</td>
+</tr>
+<tr>
+<td>S&P 500 (SPX)</td>
+<td class="value-cell" data-key="spx"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>Medium</td>
+<td>Broad market strength</td>
+</tr>
+<tr>
+<td>Market P/E Ratio</td>
+<td class="value-cell" data-key="valuations"><span class="loading">Loading...</span></td>
+<td class="red">Negative</td>
+<td>Medium</td>
+<td>Valuations elevated</td>
+</tr>
+</tbody>
+</table>
+
+<div class="grid">
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-ndx', '1D', FinSightCharts.chartConfigs['chart-ndx'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-ndx', '1W', FinSightCharts.chartConfigs['chart-ndx'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-ndx', '1M', FinSightCharts.chartConfigs['chart-ndx'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-ndx', '3M', FinSightCharts.chartConfigs['chart-ndx'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-ndx', '1Y', FinSightCharts.chartConfigs['chart-ndx'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-ndx', 'ALL', FinSightCharts.chartConfigs['chart-ndx'])">ALL</button>
+</div>
+<div class="chart" id="chart-ndx"></div>
+</div>
+</div>
+</section>

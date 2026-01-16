@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FinSight - Financial market analysis dashboard with macro, equities, crypto, and thematic insights">
+<meta name="author" content="FinSight">
+<title>FinSight - Financial Market Analysis Dashboard</title>
+<link rel="stylesheet" href="/static/styles.css">
+<!-- Chart.js for interactive charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+<header role="banner">
+<h1>FinSight</h1>
+<p class="date">
+Daily report: <b>{{ today }}</b>
+<button id="refresh-data-btn" title="Refresh market data" aria-label="Refresh market data">
+🔄 Refresh Data
+</button>
+</p>
+<nav role="navigation" aria-label="Main navigation">
+<button onclick="tab('macro')" aria-label="View Macro analysis" class="active">Macro</button>
+<button onclick="tab('gold')" aria-label="View Gold analysis">Gold</button>
+<button onclick="tab('equities')" aria-label="View Equities analysis">Equities</button>
+<button onclick="tab('crypto')" aria-label="View Crypto analysis">Crypto</button>
+<button onclick="tab('fixedincome')" aria-label="View Fixed Income analysis">Fixed Income</button>
+<button onclick="tab('thematic')" aria-label="View Thematic analysis">Thematic</button>
+<button onclick="tab('growth')" aria-label="View Growth Quality analysis">Growth / Quality</button>
+<button onclick="tab('highbeta')" aria-label="View High Beta Narrative analysis">High Beta / Narrative</button>
+</nav>
+</header>
+
+<main role="main">
+
+
+{% include "tabs/macro.html" %}
+{% include "tabs/gold.html" %}
+{% include "tabs/equities.html" %}
+{% include "tabs/crypto.html" %}
+{% include "tabs/fixed_income.html" %}
+{% include "tabs/thematic.html" %}
+{% include "tabs/growth.html" %}
+{% include "tabs/high_beta.html" %}
+
+</main>
+
+<!-- Last Update Indicator -->
+<div id="last-update">Fetching data...</div>
+
+<script src="/static/app.js"></script>
+<script src="/static/charts.js"></script>
+<script src="/static/market-data-updater.js"></script>
+</body>
+</html>

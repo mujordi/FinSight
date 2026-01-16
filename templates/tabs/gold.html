@@ -1,0 +1,46 @@
+
+<section id="gold" class="tab">
+<h2>Gold Model</h2>
+<table>
+<thead>
+<tr><th>Driver</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Gold (XAU/USD)</td>
+<td class="value-cell" data-key="gold"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>Safe haven demand strong</td>
+</tr>
+<tr>
+<td>Real Yields</td>
+<td class="value-cell" data-key="real_yields" data-source="macro"><span class="loading">Loading...</span></td>
+<td class="red">Negative</td>
+<td>High</td>
+<td>Inverse relationship with gold</td>
+</tr>
+<tr>
+<td>USD (DXY)</td>
+<td class="value-cell" data-key="dxy" data-source="macro"><span class="loading">Loading...</span></td>
+<td class="yellow">Neutral</td>
+<td>High</td>
+<td>Dollar consolidation</td>
+</tr>
+</tbody>
+</table>
+
+<div class="grid">
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-gold', '1D', FinSightCharts.chartConfigs['chart-gold'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-gold', '1W', FinSightCharts.chartConfigs['chart-gold'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-gold', '1M', FinSightCharts.chartConfigs['chart-gold'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-gold', '3M', FinSightCharts.chartConfigs['chart-gold'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-gold', '1Y', FinSightCharts.chartConfigs['chart-gold'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-gold', 'ALL', FinSightCharts.chartConfigs['chart-gold'])">ALL</button>
+</div>
+<div class="chart" id="chart-gold"></div>
+</div>
+</div>
+</section>

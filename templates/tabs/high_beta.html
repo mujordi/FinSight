@@ -1,0 +1,93 @@
+
+<section id="highbeta" class="tab">
+<h2>High Beta / Narrative Stocks Model</h2>
+
+<table>
+<thead>
+<tr>
+<th>Stock</th>
+<th>Current Value</th>
+<th>Signal</th>
+<th>Weight</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MicroStrategy (MSTR)</td>
+<td class="value-cell" data-key="mstr"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>Bitcoin proxy play</td>
+</tr>
+<tr>
+<td>Palantir (PLTR)</td>
+<td class="value-cell" data-key="pltr"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>AI & data analytics leader</td>
+</tr>
+<tr>
+<td>Coinbase (COIN)</td>
+<td class="value-cell" data-key="coin"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>Crypto exchange leader</td>
+</tr>
+<tr>
+<td>NVIDIA (NVDA)</td>
+<td class="value-cell" data-key="nvda"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>AI infrastructure play</td>
+</tr>
+</tbody>
+</table>
+
+<div class="grid">
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-mstr', '1D', FinSightCharts.chartConfigs['chart-mstr'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-mstr', '1W', FinSightCharts.chartConfigs['chart-mstr'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-mstr', '1M', FinSightCharts.chartConfigs['chart-mstr'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-mstr', '3M', FinSightCharts.chartConfigs['chart-mstr'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-mstr', '1Y', FinSightCharts.chartConfigs['chart-mstr'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-mstr', 'ALL', FinSightCharts.chartConfigs['chart-mstr'])">ALL</button>
+</div>
+<div class="chart" id="chart-mstr"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-pltr', '1D', FinSightCharts.chartConfigs['chart-pltr'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-pltr', '1W', FinSightCharts.chartConfigs['chart-pltr'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-pltr', '1M', FinSightCharts.chartConfigs['chart-pltr'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-pltr', '3M', FinSightCharts.chartConfigs['chart-pltr'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-pltr', '1Y', FinSightCharts.chartConfigs['chart-pltr'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-pltr', 'ALL', FinSightCharts.chartConfigs['chart-pltr'])">ALL</button>
+</div>
+<div class="chart" id="chart-pltr"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-coin', '1D', FinSightCharts.chartConfigs['chart-coin'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-coin', '1W', FinSightCharts.chartConfigs['chart-coin'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-coin', '1M', FinSightCharts.chartConfigs['chart-coin'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-coin', '3M', FinSightCharts.chartConfigs['chart-coin'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-coin', '1Y', FinSightCharts.chartConfigs['chart-coin'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-coin', 'ALL', FinSightCharts.chartConfigs['chart-coin'])">ALL</button>
+</div>
+<div class="chart" id="chart-coin"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-highbeta-nvda', '1D', FinSightCharts.chartConfigs['chart-highbeta-nvda'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-highbeta-nvda', '1W', FinSightCharts.chartConfigs['chart-highbeta-nvda'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-highbeta-nvda', '1M', FinSightCharts.chartConfigs['chart-highbeta-nvda'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-highbeta-nvda', '3M', FinSightCharts.chartConfigs['chart-highbeta-nvda'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-highbeta-nvda', '1Y', FinSightCharts.chartConfigs['chart-highbeta-nvda'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-highbeta-nvda', 'ALL', FinSightCharts.chartConfigs['chart-highbeta-nvda'])">ALL</button>
+</div>
+<div class="chart" id="chart-highbeta-nvda"></div>
+</div>
+</div>
+</section>

@@ -1,5 +1,6 @@
 
-FinSight V9 – ALL tabs + Growth / Quality Equities (stable)
+FinSight – Modular architecture
+Added: High Beta / Narrative Stocks tab
 
 Run:
 pip install -r requirements.txt

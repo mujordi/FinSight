@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo: Millores FinSight UI</title>
+<style>
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --accent: #3b82f6;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+}
+
+body {
+  margin: 0;
+  padding: 40px;
+  background: #1a1a2e;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 3rem;
+}
+
+.section {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.section h2 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.before, .after {
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid;
+}
+
+.before {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--red);
+}
+
+.after {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: var(--green);
+}
+
+.before h3::before {
+  content: "❌ ";
+}
+
+.after h3::before {
+  content: "✅ ";
+}
+
+/* Demo Buttons */
+.button-demo {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.btn-old {
+  background: #334155;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-new {
+  background: var(--bg-tertiary);
+  color: white;
+  border: 2px solid transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-new::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-new:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-new:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-new.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Demo Badges */
+.badge-demo {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.badge-old {
+  color: var(--green);
+}
+
+.badge-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+
+.badge-new::before {
+  content: '●';
+  font-size: 1.2em;
+}
+
+/* Demo Table */
+.table-demo table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-demo thead {
+  background: var(--bg-tertiary);
+}
+
+.table-demo th {
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+}
+
+.table-demo td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.table-demo tbody tr {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.table-demo tbody tr:hover {
+  background: rgba(59, 130, 246, 0.05);
+  transform: scale(1.01);
+}
+
+/* Demo Card */
+.card-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent);
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: bold;
+}
+
+.highlight {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, transparent 100%);
+  padding: 1rem;
+  border-left: 3px solid var(--accent);
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .comparison {
+    grid-template-columns: 1fr;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎨 Demo: Millores FinSight UI</h1>
+
+  <!-- Botons -->
+  <div class="section">
+    <h2>1. Botons Millorats</h2>
+    <div class="comparison">
+      <div class="before">
+        <h3>Abans</h3>
+        <div class="button-demo">
+          <button class="btn-old">Macro</button>
+          <button class="btn-old">Gold</button>
+          <button class="btn-old">Equities</button>
+        </div>
+        <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.9rem;">
+          • Estil bàsic<br>
+          • Sense feedback visual<br>
+          • Sense estat actiu
+        </p>
+      </div>
+      <div class="after">
+        <h3>Després</h3>
+        <div class="button-demo">
+          <button class="btn-new active">Macro</button>
+          <button class="btn-new">Gold</button>
+          <button class="btn-new">Equities</button>
+        </div>
+        <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.9rem;">
+          • Efecte d'ona al hover<br>
+          • Elevació 3D<br>
+          • Estat actiu amb glow<br>
+          • Transicions suaves
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="section">
+    <h2>2. Badges de Signals</h2>
+    <div class="comparison">
+      <div class="before">
+        <h3>Abans</h3>
+        <div class="badge-demo">
+          <span class="badge-old" style="color: var(--green)">Positive</span>
+          <span class="badge-old" style="color: var(--yellow)">Neutral</span>
+          <span class="badge-old" style="color: var(--red)">Negative</span>
+        </div>
+        <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.9rem;">
+          • Només text colorat<br>
+          • Difícil de distingir
+        </p>
+      </div>
+      <div class="after">
+        <h3>Després</h3>
+        <div class="badge-demo">
+          <span class="badge-new">Positive</span>
+          <span class="badge-new" style="color: var(--yellow); background: rgba(234, 179, 8, 0.1); border-color: var(--yellow)">Neutral</span>
+          <span class="badge-new" style="color: var(--red); background: rgba(239, 68, 68, 0.1); border-color: var(--red)">Negative</span>
+        </div>
+        <p style="margin-top: 1rem; color: #94a3b8; font-size: 0.9rem;">
+          • Indicador visual (●)<br>
+          • Fons translúcid<br>
+          • Bordes colorats<br>
+          • Millor accessibilitat
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taules -->
+  <div class="section">
+    <h2>3. Taules Interactives</h2>
+    <div class="after">
+      <h3>Passa el cursor per les files</h3>
+      <div class="table-demo">
+        <table>
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Signal</th>
+              <th>Weight</th>
+              <th>Explanation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Real Yields</td>
+              <td><span class="badge-new" style="color: var(--red); background: rgba(239, 68, 68, 0.1); border-color: var(--red)">Negative</span></td>
+              <td>High</td>
+              <td>High real yields pressure valuations</td>
+            </tr>
+            <tr>
+              <td>Inflation</td>
+              <td><span class="badge-new" style="color: var(--yellow); background: rgba(234, 179, 8, 0.1); border-color: var(--yellow)">Neutral</span></td>
+              <td>Medium</td>
+              <td>Disinflation ongoing</td>
+            </tr>
+            <tr>
+              <td>VIX</td>
+              <td><span class="badge-new">Positive</span></td>
+              <td>Medium</td>
+              <td>Low volatility</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="section">
+    <h2>4. Cards amb Hover Effect</h2>
+    <div class="card-demo">
+      <div class="card">
+        <h3 style="color: var(--accent); margin-top: 0;">📱 Responsiu</h3>
+        <p>Adapta't automàticament a qualsevol dispositiu</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent); margin-top: 0;">♿ Accessible</h3>
+        <p>WCAG 2.1 AA compliant amb ARIA labels</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent); margin-top: 0;">⚡ Ràpid</h3>
+        <p>Optimitzat per performance amb preconnect</p>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--accent); margin-top: 0;">🎨 Modern</h3>
+        <p>Disseny professional amb animacions suaves</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="section">
+    <h2>5. Característiques Principals</h2>
+    <div class="highlight">
+      <strong>💡 Millores d'UX implementades:</strong>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Persistència de pestanya:</strong> Recorda l'última pestanya visitada</li>
+      <li><strong>Navegació per teclat:</strong> Usa ← i → per canviar de pestanya</li>
+      <li><strong>Smooth scroll:</strong> Animació suau en canviar de secció</li>
+      <li><strong>Loading states:</strong> Indicadors visuals mentre carreguen els gràfics</li>
+      <li><strong>Hover effects:</strong> Feedback visual en tots els elements interactius</li>
+      <li><strong>Focus states:</strong> Navegació accessible per teclat</li>
+      <li><strong>Responsive grid:</strong> S'adapta de 1 a 4 columnes segons la pantalla</li>
+      <li><strong>Prefers-reduced-motion:</strong> Respecta les preferències d'accessibilitat</li>
+    </ul>
+
+    <div class="highlight" style="margin-top: 2rem;">
+      <strong>🎯 Optimitzacions de rendiment:</strong>
+    </div>
+    <ul class="feature-list">
+      <li><strong>CSS Variables:</strong> Millor mantenibilitat i performance</li>
+      <li><strong>Preconnect:</strong> Càrrega més ràpida dels gràfics de TradingView</li>
+      <li><strong>Efficient selectors:</strong> CSS optimitzat per velocitat</li>
+      <li><strong>Event delegation:</strong> Menys memory footprint en JavaScript</li>
+      <li><strong>LocalStorage:</strong> Evita recàrregues innecessàries</li>
+    </ul>
+  </div>
+
+  <!-- Responsive Demo -->
+  <div class="section">
+    <h2>6. Disseny Responsiu</h2>
+    <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--accent);">
+      <h3 style="color: var(--accent); margin-top: 0;">📱 Breakpoints Implementats:</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <strong style="color: var(--green);">Desktop</strong><br>
+          <span style="color: #94a3b8; font-size: 0.9rem;">> 1200px: Grid 4 cols</span>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <strong style="color: var(--yellow);">Tablet</strong><br>
+          <span style="color: #94a3b8; font-size: 0.9rem;">768-1200px: Grid adaptatiu</span>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+          <strong style="color: var(--red);">Mòbil</strong><br>
+          <span style="color: #94a3b8; font-size: 0.9rem;">< 768px: Grid 1 col</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Note -->
+  <div class="section" style="text-align: center; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);">
+    <h2 style="font-size: 2rem;">🎉 Transformat!</h2>
+    <p style="font-size: 1.2rem; color: #94a3b8;">
+      De 17 línies de CSS a una aplicació web moderna i professional
+    </p>
+    <p style="margin-top: 1rem;">
+      <strong style="color: var(--green);">✓ Responsiu</strong> • 
+      <strong style="color: var(--green);">✓ Accessible</strong> • 
+      <strong style="color: var(--green);">✓ Ràpid</strong> • 
+      <strong style="color: var(--green);">✓ Modern</strong>
+    </p>
+  </div>
+
+</div>
+
+<script>
+// Demo: Afegir interactivitat als botons
+document.querySelectorAll('.btn-new').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.btn-new').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
+

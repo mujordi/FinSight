@@ -1,0 +1,75 @@
+
+<section id="crypto" class="tab">
+<h2>Crypto Model</h2>
+<table>
+<thead>
+<tr><th>Factor</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitcoin (BTC)</td>
+<td class="value-cell" data-key="btc"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>Leading digital asset</td>
+</tr>
+<tr>
+<td>Ethereum (ETH)</td>
+<td class="value-cell" data-key="eth"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>High</td>
+<td>Smart contract leader</td>
+</tr>
+<tr>
+<td>VIX (Risk Appetite)</td>
+<td class="value-cell" data-key="vix" data-source="macro"><span class="loading">Loading...</span></td>
+<td class="green">Positive</td>
+<td>Medium</td>
+<td>Low volatility favors risk assets</td>
+</tr>
+<tr>
+<td>USD (DXY)</td>
+<td class="value-cell" data-key="dxy" data-source="macro"><span class="loading">Loading...</span></td>
+<td class="yellow">Neutral</td>
+<td>High</td>
+<td>Dollar consolidation</td>
+</tr>
+</tbody>
+</table>
+
+<div class="grid">
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-btc', '1D', FinSightCharts.chartConfigs['chart-btc'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-btc', '1W', FinSightCharts.chartConfigs['chart-btc'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-btc', '1M', FinSightCharts.chartConfigs['chart-btc'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-btc', '3M', FinSightCharts.chartConfigs['chart-btc'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-btc', '1Y', FinSightCharts.chartConfigs['chart-btc'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-btc', 'ALL', FinSightCharts.chartConfigs['chart-btc'])">ALL</button>
+</div>
+<div class="chart" id="chart-btc"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eth', '1D', FinSightCharts.chartConfigs['chart-eth'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eth', '1W', FinSightCharts.chartConfigs['chart-eth'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eth', '1M', FinSightCharts.chartConfigs['chart-eth'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eth', '3M', FinSightCharts.chartConfigs['chart-eth'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eth', '1Y', FinSightCharts.chartConfigs['chart-eth'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eth', 'ALL', FinSightCharts.chartConfigs['chart-eth'])">ALL</button>
+</div>
+<div class="chart" id="chart-eth"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-crypto-total', '1D', FinSightCharts.chartConfigs['chart-crypto-total'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-crypto-total', '1W', FinSightCharts.chartConfigs['chart-crypto-total'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-crypto-total', '1M', FinSightCharts.chartConfigs['chart-crypto-total'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-crypto-total', '3M', FinSightCharts.chartConfigs['chart-crypto-total'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-crypto-total', '1Y', FinSightCharts.chartConfigs['chart-crypto-total'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-crypto-total', 'ALL', FinSightCharts.chartConfigs['chart-crypto-total'])">ALL</button>
+</div>
+<div class="chart" id="chart-crypto-total"></div>
+</div>
+</div>
+</section>

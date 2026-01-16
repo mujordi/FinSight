@@ -1,0 +1,93 @@
+
+<section id="macro" class="tab active">
+<h2>Macro Model</h2>
+<table>
+<thead>
+<tr><th>Parameter</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Real Yields</td>
+<td class="value-cell" data-key="real_yields"><span class="loading">Loading...</span></td>
+<td class="signal-cell" data-key="real_yields">Negative</td>
+<td class="weight-cell" data-key="real_yields">High</td>
+<td class="explanation-cell" data-key="real_yields">High real yields pressure valuations</td>
+</tr>
+<tr>
+<td>Inflation</td>
+<td class="value-cell" data-key="inflation"><span class="loading">Loading...</span></td>
+<td class="signal-cell" data-key="inflation">Neutral</td>
+<td class="weight-cell" data-key="inflation">Medium</td>
+<td class="explanation-cell" data-key="inflation">Disinflation ongoing</td>
+</tr>
+<tr>
+<td>Yield Curve</td>
+<td class="value-cell" data-key="yield_curve"><span class="loading">Loading...</span></td>
+<td class="signal-cell" data-key="yield_curve">Positive</td>
+<td class="weight-cell" data-key="yield_curve">Medium</td>
+<td class="explanation-cell" data-key="yield_curve">Curve re-steepening</td>
+</tr>
+<tr>
+<td>Dollar (DXY)</td>
+<td class="value-cell" data-key="dxy"><span class="loading">Loading...</span></td>
+<td class="signal-cell" data-key="dxy">Neutral</td>
+<td class="weight-cell" data-key="dxy">High</td>
+<td class="explanation-cell" data-key="dxy">Dollar stable</td>
+</tr>
+<tr>
+<td>VIX</td>
+<td class="value-cell" data-key="vix"><span class="loading">Loading...</span></td>
+<td class="signal-cell" data-key="vix">Positive</td>
+<td class="weight-cell" data-key="vix">Medium</td>
+<td class="explanation-cell" data-key="vix">Low volatility</td>
+</tr>
+</tbody>
+</table>
+
+<div class="grid">
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-dxy', '1D', FinSightCharts.chartConfigs['chart-dxy'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-dxy', '1W', FinSightCharts.chartConfigs['chart-dxy'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-dxy', '1M', FinSightCharts.chartConfigs['chart-dxy'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-dxy', '3M', FinSightCharts.chartConfigs['chart-dxy'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-dxy', '1Y', FinSightCharts.chartConfigs['chart-dxy'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-dxy', 'ALL', FinSightCharts.chartConfigs['chart-dxy'])">ALL</button>
+</div>
+<div class="chart" id="chart-dxy"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eurusd', '1D', FinSightCharts.chartConfigs['chart-eurusd'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eurusd', '1W', FinSightCharts.chartConfigs['chart-eurusd'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eurusd', '1M', FinSightCharts.chartConfigs['chart-eurusd'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eurusd', '3M', FinSightCharts.chartConfigs['chart-eurusd'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eurusd', '1Y', FinSightCharts.chartConfigs['chart-eurusd'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-eurusd', 'ALL', FinSightCharts.chartConfigs['chart-eurusd'])">ALL</button>
+</div>
+<div class="chart" id="chart-eurusd"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-usdjpy', '1D', FinSightCharts.chartConfigs['chart-usdjpy'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-usdjpy', '1W', FinSightCharts.chartConfigs['chart-usdjpy'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-usdjpy', '1M', FinSightCharts.chartConfigs['chart-usdjpy'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-usdjpy', '3M', FinSightCharts.chartConfigs['chart-usdjpy'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-usdjpy', '1Y', FinSightCharts.chartConfigs['chart-usdjpy'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-usdjpy', 'ALL', FinSightCharts.chartConfigs['chart-usdjpy'])">ALL</button>
+</div>
+<div class="chart" id="chart-usdjpy"></div>
+</div>
+<div class="chart-wrapper">
+<div class="time-selector">
+<button onclick="FinSightCharts.updateChartTimeRange('chart-vix', '1D', FinSightCharts.chartConfigs['chart-vix'])">1D</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-vix', '1W', FinSightCharts.chartConfigs['chart-vix'])">1W</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-vix', '1M', FinSightCharts.chartConfigs['chart-vix'])">1M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-vix', '3M', FinSightCharts.chartConfigs['chart-vix'])" class="active">3M</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-vix', '1Y', FinSightCharts.chartConfigs['chart-vix'])">1Y</button>
+<button onclick="FinSightCharts.updateChartTimeRange('chart-vix', 'ALL', FinSightCharts.chartConfigs['chart-vix'])">ALL</button>
+</div>
+<div class="chart" id="chart-vix"></div>
+</div>
+</div>
+</section>
