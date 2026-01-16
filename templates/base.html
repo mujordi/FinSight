@@ -19,6 +19,8 @@
 </head>
 <body>
 <header role="banner">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+<div>
 <h1>FinSight</h1>
 <p class="date">
 Daily report: <b>{{ today }}</b>
@@ -26,6 +28,18 @@ Daily report: <b>{{ today }}</b>
 🔄 Refresh Data
 </button>
 </p>
+</div>
+<div style="display: flex; align-items: center; gap: 15px;">
+{% if username %}
+<span style="color: #64748b; font-size: 14px;">👤 {{ username }}</span>
+{% endif %}
+<a href="/api/logout" style="text-decoration: none;">
+<button style="padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; transition: background 0.2s;" onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#ef4444'">
+🚪 Logout
+</button>
+</a>
+</div>
+</div>
 <nav role="navigation" aria-label="Main navigation">
 <button onclick="tab('model')" aria-label="View Model Framework">📊 Model</button>
 <button onclick="tab('macro')" aria-label="View Macro analysis" class="active">Macro</button>

@@ -5,38 +5,95 @@ Obtains real-time financial data from various sources
 
 import yfinance as yf
 import requests
-from datetime import datetime
-from typing import Dict, Optional
+from datetime import datetime, timedelta
+from typing import Dict, Optional, Tuple
+from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 
 class MarketDataFetcher:
     """Fetches real-time market data from various APIs"""
     
+    # Cache for 5 minutes to avoid repeated calls
+    _cache = {}
+    _cache_duration = timedelta(minutes=5)
+    _cache_lock = threading.Lock()
+    
+    @staticmethod
+    def get_price_and_change(symbol: str) -> Tuple[Optional[float], Optional[float]]:
+        """Get both price and change in a single call - OPTIMIZED"""
+        # Check cache first
+        cache_key = f"{symbol}_{datetime.now().strftime('%Y%m%d%H%M')}"
+        with MarketDataFetcher._cache_lock:
+            if cache_key in MarketDataFetcher._cache:
+                return MarketDataFetcher._cache[cache_key]
+        
+        try:
+            ticker = yf.Ticker(symbol)
+            # Get 5 days of data in ONE call with timeout
+            data = ticker.history(period="5d", timeout=5)
+            
+            if not data.empty and len(data) >= 1:
+                current = data['Close'].iloc[-1]
+                price = round(current, 2)
+                
+                # Calculate change if we have previous data
+                if len(data) >= 2:
+                    previous = data['Close'].iloc[-2]
+                    change = round(((current - previous) / previous) * 100, 2)
+                else:
+                    change = 0.0
+                
+                result = (price, change)
+                with MarketDataFetcher._cache_lock:
+                    MarketDataFetcher._cache[cache_key] = result
+                return result
+        except Exception as e:
+            print(f"Error fetching {symbol}: {e}")
+        
+        return (None, None)
+    
+    @staticmethod
+    def fetch_multiple_symbols(symbols: Dict[str, str]) -> Dict[str, Dict]:
+        """Fetch multiple symbols in parallel - FAST!"""
+        results = {}
+        
+        def fetch_symbol(key, symbol):
+            price, change = MarketDataFetcher.get_price_and_change(symbol)
+            return key, {
+                'value': price if price is not None else 0.0,
+                'change': change if change is not None else 0.0
+            }
+        
+        # Use ThreadPoolExecutor for parallel fetching (max 10 concurrent)
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = {
+                executor.submit(fetch_symbol, key, symbol): key 
+                for key, symbol in symbols.items()
+            }
+            
+            for future in as_completed(futures, timeout=15):
+                try:
+                    key, data = future.result()
+                    results[key] = data
+                except Exception as e:
+                    key = futures[future]
+                    print(f"Error in parallel fetch for {key}: {e}")
+                    results[key] = {'value': 0.0, 'change': 0.0}
+        
+        return results
+    
     @staticmethod
     def get_price(symbol: str) -> Optional[float]:
         """Get current price for a symbol using yfinance"""
-        try:
-            ticker = yf.Ticker(symbol)
-            data = ticker.history(period="1d")
-            if not data.empty:
-                return round(data['Close'].iloc[-1], 2)
-        except Exception as e:
-            print(f"Error fetching {symbol}: {e}")
-        return None
+        price, _ = MarketDataFetcher.get_price_and_change(symbol)
+        return price
     
     @staticmethod
     def get_change_percent(symbol: str) -> Optional[float]:
         """Get percentage change for a symbol"""
-        try:
-            ticker = yf.Ticker(symbol)
-            data = ticker.history(period="5d")
-            if len(data) >= 2:
-                current = data['Close'].iloc[-1]
-                previous = data['Close'].iloc[-2]
-                change = ((current - previous) / previous) * 100
-                return round(change, 2)
-        except Exception as e:
-            print(f"Error fetching change for {symbol}: {e}")
-        return None
+        _, change = MarketDataFetcher.get_price_and_change(symbol)
+        return change
     
     @staticmethod
     def get_macro_data() -> Dict[str, any]:

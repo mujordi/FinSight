@@ -1,6 +1,14 @@
 
 <section id="gold" class="tab">
+<div class="tab-header">
 <h2>Gold Model</h2>
+<div class="sentiment-indicator" data-tab="gold">
+<div class="sentiment-badge">
+<span class="sentiment-text">NEUTRAL</span>
+<span class="sentiment-score">0%</span>
+</div>
+</div>
+</div>
 <table>
 <thead>
 <tr><th>Driver</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
@@ -9,23 +17,23 @@
 <tr>
 <td>Gold (XAU/USD)</td>
 <td class="value-cell" data-key="gold"><span class="loading">Loading...</span></td>
-<td class="green">Positive</td>
-<td>High</td>
-<td>Safe haven demand strong</td>
+<td class="signal-cell" data-key="gold" data-signal-type="signal"><span class="badge green">Positive</span></td>
+<td class="weight-cell" data-key="gold" data-signal-type="weight">High</td>
+<td class="explanation-cell" data-key="gold" data-signal-type="explanation">Safe haven demand strong</td>
 </tr>
 <tr>
 <td>Real Yields</td>
 <td class="value-cell" data-key="real_yields" data-source="macro"><span class="loading">Loading...</span></td>
-<td class="red">Negative</td>
-<td>High</td>
-<td>Inverse relationship with gold</td>
+<td class="signal-cell" data-key="real_yields" data-signal-type="signal"><span class="badge red">Negative</span></td>
+<td class="weight-cell" data-key="real_yields" data-signal-type="weight">High</td>
+<td class="explanation-cell" data-key="real_yields" data-signal-type="explanation">Inverse relationship with gold</td>
 </tr>
 <tr>
 <td>USD (DXY)</td>
 <td class="value-cell" data-key="dxy" data-source="macro"><span class="loading">Loading...</span></td>
-<td class="yellow">Neutral</td>
-<td>High</td>
-<td>Dollar consolidation</td>
+<td class="signal-cell" data-key="dxy" data-signal-type="signal"><span class="badge yellow">Neutral</span></td>
+<td class="weight-cell" data-key="dxy" data-signal-type="weight">High</td>
+<td class="explanation-cell" data-key="dxy" data-signal-type="explanation">Dollar consolidation</td>
 </tr>
 </tbody>
 </table>

@@ -4,3 +4,5 @@ jinja2
 yfinance
 requests
 pandas
+pydantic
+python-multipart

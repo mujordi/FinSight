@@ -1,6 +1,14 @@
 
 <section id="fixedincome" class="tab">
+<div class="tab-header">
 <h2>Fixed Income Model</h2>
+<div class="sentiment-indicator" data-tab="fixedincome">
+<div class="sentiment-badge">
+<span class="sentiment-text">NEUTRAL</span>
+<span class="sentiment-score">0%</span>
+</div>
+</div>
+</div>
 <table>
 <thead>
 <tr><th>Factor</th><th>Current Value</th><th>Signal</th><th>Weight</th><th>Explanation</th></tr>
@@ -9,30 +17,30 @@
 <tr>
 <td>US 10Y Yield</td>
 <td class="value-cell" data-key="us10y"><span class="loading">Loading...</span></td>
-<td class="red">Negative</td>
-<td>High</td>
-<td>High yields pressure bond prices</td>
+<td class="signal-cell" data-key="us10y" data-signal-type="signal"><span class="badge red">Negative</span></td>
+<td class="weight-cell" data-key="us10y" data-signal-type="weight">High</td>
+<td class="explanation-cell" data-key="us10y" data-signal-type="explanation">High yields pressure bond prices</td>
 </tr>
 <tr>
 <td>US 2Y Yield</td>
 <td class="value-cell" data-key="us2y"><span class="loading">Loading...</span></td>
-<td class="red">Negative</td>
-<td>High</td>
-<td>Front-end yields elevated</td>
+<td class="signal-cell" data-key="us2y" data-signal-type="signal"><span class="badge red">Negative</span></td>
+<td class="weight-cell" data-key="us2y" data-signal-type="weight">High</td>
+<td class="explanation-cell" data-key="us2y" data-signal-type="explanation">Front-end yields elevated</td>
 </tr>
 <tr>
 <td>Yield Curve (10Y-2Y)</td>
 <td class="value-cell" data-key="yield_curve"><span class="loading">Loading...</span></td>
-<td class="yellow">Neutral</td>
-<td>High</td>
-<td>Curve still relatively flat</td>
+<td class="signal-cell" data-key="yield_curve" data-signal-type="signal"><span class="badge yellow">Neutral</span></td>
+<td class="weight-cell" data-key="yield_curve" data-signal-type="weight">High</td>
+<td class="explanation-cell" data-key="yield_curve" data-signal-type="explanation">Curve still relatively flat</td>
 </tr>
 <tr>
 <td>TLT (20+ Year Bonds)</td>
 <td class="value-cell" data-key="tlt"><span class="loading">Loading...</span></td>
-<td class="yellow">Neutral</td>
-<td>Medium</td>
-<td>Long duration positioning</td>
+<td class="signal-cell" data-key="tlt" data-signal-type="signal"><span class="badge yellow">Neutral</span></td>
+<td class="weight-cell" data-key="tlt" data-signal-type="weight">Medium</td>
+<td class="explanation-cell" data-key="tlt" data-signal-type="explanation">Long duration positioning</td>
 </tr>
 </tbody>
 </table>
