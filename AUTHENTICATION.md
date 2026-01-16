@@ -147,3 +147,5 @@ self.session_duration = timedelta(hours=24)  # Change as needed
 - Multi-factor authentication
 - OAuth integration (Google, GitHub, etc.)
 
+
+

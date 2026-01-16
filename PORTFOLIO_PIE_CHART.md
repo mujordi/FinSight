@@ -170,3 +170,5 @@ Cash    1 product   15.0%  Cash Daily
 **Chart.js:** ✅ Ja estava carregat
 **Responsive:** ✅ Adaptat a mòbil
 
+
+

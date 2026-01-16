@@ -224,3 +224,5 @@ Distribution:
 **Classificació:** ✅ Automàtica per keywords
 **Import/Export:** ✅ CSV suportat
 
+
+

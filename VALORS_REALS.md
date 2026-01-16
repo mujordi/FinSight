@@ -504,3 +504,5 @@ Auto-refresh loop repeats
 **Data**: 16 Gener 2026  
 **Versió**: 3.0.0 - Real-Time Data Edition
 
+
+

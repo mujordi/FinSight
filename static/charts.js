@@ -416,3 +416,5 @@ window.FinSightCharts = {
   timeRanges
 };
 
+
+

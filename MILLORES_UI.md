@@ -262,3 +262,5 @@ La interfície de FinSight ha estat transformada en una aplicació web moderna, 
 
 **Resultat**: Una aplicació financera de qualitat professional adequada per usuaris finals. 📈✨
 
+
+

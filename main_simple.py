@@ -99,3 +99,5 @@ async def get_all_market_data(auth_token: Optional[str] = Cookie(None)):
         "signals": {}
     })
 
+
+

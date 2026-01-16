@@ -401,3 +401,5 @@ A tenir:
 **Data**: 16 Gener 2026  
 **Versió**: 5.0.0 - Sentiment Indicators & Model Documentation Edition
 
+
+

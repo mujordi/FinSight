@@ -430,3 +430,5 @@ A tenir:
 **Data**: 16 Gener 2026  
 **Versió**: 4.0.0 - Dynamic Models Edition
 
+
+

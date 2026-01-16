@@ -177,3 +177,5 @@ Per a producció, considera:
 **Versió:** 1.0 - Production Ready
 **Status:** ✅ COMPLETAT
 
+
+

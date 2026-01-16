@@ -356,3 +356,5 @@ S'han substituït **tots els iframes de TradingView** (39 referències) per:
 **Data**: 16 Gener 2026  
 **Versió**: 2.0.0 - Modern Charts Edition
 
+
+

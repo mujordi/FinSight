@@ -113,3 +113,5 @@ class FastMarketData:
             'highbeta': FastMarketData.get_highbeta_data(),
         }
 
+
+

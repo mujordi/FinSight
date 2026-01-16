@@ -138,3 +138,5 @@ Provat en:
 **Data:** 2026-01-16
 **Status:** ✅ COMPLET - Mòbil optimitzat i testat
 
+
+
